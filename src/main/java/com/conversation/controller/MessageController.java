@@ -67,7 +67,7 @@ public class MessageController {
 		
 		List<Message> messages = conversation.getMessages();
 		model.addAttribute("messages", messages);
-		
+		//s
 		
 		return "conversation";
 	}
