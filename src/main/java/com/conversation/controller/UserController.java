@@ -29,7 +29,7 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-
+//lk
 	
 	@PostMapping("/userCheck")
 	public String login(@RequestParam ("username") String username, @RequestParam("pwd") String password, HttpSession session) {
