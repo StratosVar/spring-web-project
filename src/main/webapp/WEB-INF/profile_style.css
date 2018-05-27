@@ -1,0 +1,56 @@
+.profile_box {
+	/*border: 3px solid rgba(121, 97, 81,0.2);*/
+	font-size: 1.5em;
+}
+
+.property_input{
+
+	margin: 10px;
+	color:black;
+}
+
+
+.submit{
+
+	float: right;
+	margin-top: 15px;
+	margin-right: 5px;
+}
+
+
+.input-parent {
+	display: flex;
+	flex-wrap: wrap;
+	
+	border:1px solid pink;
+
+}
+
+.input-box{
+	border: 1px solid yellow;
+}
+
+
+input.hidden {
+	position: absolute;
+	left: -9999px;
+}
+
+#profile-image1 {
+	cursor: pointer;
+
+	width: 200px;
+	height: 200px;
+	border:2px solid #03b1ce ;}
+	.tital{ font-size:16px; font-weight:500;}
+	.bot-border{ border-bottom:1px #f8f8f8 solid;  margin:5px 0  5px 0}	
+
+
+.image_input{
+	align-items: center;
+	vertical-align: center;
+	margin: 10px;
+	
+
+}
+
