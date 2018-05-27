@@ -28,7 +28,7 @@ import com.conversation.repository.PartnerData;
 import com.conversation.service.ConversationService;
 import com.conversation.service.UserService;
 
-//@Controller
+@Controller
 public class TnsController {
 	
 	@Autowired
@@ -70,7 +70,7 @@ public class TnsController {
 		r.setReviewer(p);
 		p.getReviews().add(r);
 		//pd.save(p);
-        return "/thanasis/home1";
+        return "profile";
     }
 	
 	
@@ -98,7 +98,7 @@ public class TnsController {
 		String s=(String) session.getAttribute("username");
 		
 		model.addAttribute("list",convData.findAllByCreator(userService.getUser(3)));
-        return "conversations1";
+        return "/thanasis/conversations1";
     }
 	
 	@RequestMapping("/messages/{id}")
