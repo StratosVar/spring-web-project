@@ -79,7 +79,7 @@ public class TnsController {
     public String review(HttpSession session,Model model) {
 	
 		
-        return "form-reviewjsp";
+        return "SearchUsers";
     }
 	
 

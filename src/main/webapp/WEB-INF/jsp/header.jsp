@@ -10,6 +10,11 @@
   <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/basicStyle.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/profile_style.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/SearchUsers.css">
+
+
+<link href='  https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css' rel='stylesheet' type='text/css'>
+
   
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
