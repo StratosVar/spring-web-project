@@ -42,7 +42,7 @@ public class TnsController {
 	
 	@Autowired
 	PartnerData pd;
-	
+	//SXOLIO
 	
 	
 	@PostMapping("/")
