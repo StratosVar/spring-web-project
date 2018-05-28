@@ -24,7 +24,7 @@
 
 		<!-- SEARCH FILTERS -->	
 		<div class="col-md-3 sidenav">
-			<form action="/usersResults" method="get">
+			<form action="/usersResults" method="get" autocomplete="on">
 
 
 				<div class="form-group">

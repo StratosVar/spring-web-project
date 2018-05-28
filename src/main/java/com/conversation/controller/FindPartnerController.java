@@ -39,7 +39,7 @@ public class FindPartnerController {
 		pd.findAll();
 		Page<Partner> page=pd.findAll(pageable);
 		model.addAttribute("list",page.getContent());
-		return "profilePartner";
+		return "ProfilePartner";
 	}
 	
 	
@@ -98,7 +98,7 @@ public class FindPartnerController {
 		model.addAttribute("list", messages);
 		
 		
-		return "messagesChat";
+		return "MessagesChat";
 	}
 	
 	
