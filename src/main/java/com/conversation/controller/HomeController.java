@@ -44,6 +44,33 @@ public class HomeController {
 		return "login";
 	}
 
+
+	
+	@PostMapping("/validation")
+	public String loginValidation(@RequestParam ("username") String username, @RequestParam("pwd") String password, HttpSession session) {
+		
+		if(userData.existsByUsername(username)) {
+			User u=userData.findByUsername(username);
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			String hashedPassword = passwordEncoder.encode(password);
+			
+			System.out.println(passwordEncoder.matches(password,u.getPassword()));
+			if(passwordEncoder.matches(password,u.getPassword())) {
+				session.setAttribute("id", userService.getUserId(username));
+				session.setAttribute("username", userData.findByUsername(username));
+				session.setAttribute("loggedin",true);
+				return "redirect:/messagesChat";
+			}else {
+				return "login";
+			}
+			
+		}else {
+			return "login";
+		}
+	
+	}
+	
+	//old way of validation without encryption -Stam
 	@PostMapping("/userCheck")
 	public String login(@RequestParam ("username") String username, @RequestParam("pwd") String password, HttpSession session) {
 		
@@ -62,34 +89,7 @@ public class HomeController {
 	
 	}
 	
-	@PostMapping("/validation")
-	public String loginValidation(@RequestParam ("username") String username, @RequestParam("pwd") String password, HttpSession session) {
-		
-		
-		
-		
-		//System.out.println(passwordEncoder.matches(password, john.getPassword()));
-		
-		
-		
-		
-		if(userData.existsByUsername(username)) {
-			User u=userData.findByUsername(username);
-			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-			String hashedPassword = passwordEncoder.encode(password);
-			
-			System.out.println(hashedPassword.matches(u.getPassword()));
-			
-			if(hashedPassword.matches(u.getPassword())) {
-				session.setAttribute("id", userService.getUserId(username));
-				session.setAttribute("username", userData.findByUsername(username));
-				session.setAttribute("loggedin",true);
-				return "redirect:/messagesChat";
-			}
-			return "login";
-		}else {
-			return "login";
-		}
 	
-	}
+	
+	
 }

@@ -43,7 +43,7 @@
               
               <br>
     
-              <!-- /input-group -->
+              <!-- /input-group -->a
             </div>
             <div class="col-sm-6">
             <h4 style="color:#00b1b1;">${partner.username} </h4></span>
