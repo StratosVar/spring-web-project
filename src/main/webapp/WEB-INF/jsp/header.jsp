@@ -14,6 +14,9 @@
    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/chat.css">
 
   <script src="${pageContext.request.contextPath}/js/basic.js"></script>
+  <script src="${pageContext.request.contextPath}/js/form.js"></script>
+
+
 
   <link href='  https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css' rel='stylesheet' type='text/css'>
 

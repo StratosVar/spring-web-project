@@ -4,8 +4,7 @@
   <p class="col-sm-8"> ... </p>
 </div>
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-
-<script src="basic.js"></script>  
+ 
 </footer>
   
 </body>

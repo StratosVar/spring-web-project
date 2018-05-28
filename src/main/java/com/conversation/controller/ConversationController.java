@@ -40,13 +40,32 @@ public class ConversationController {
 		
 		int id = (int) session.getAttribute("id");
 		List<Conversation> conversations = convService.getConversationsByUserID(id);
-				
-		// add the customers to the mode
+
 		model.addAttribute("conversations", conversations);
 		System.out.println(conversations);	
 		return "conversations";
 	}
 		
+	@GetMapping("/messagesChat")
+	public String showConversation(@RequestParam(value="conversationId",required=false) Integer conversationId,Model model, HttpSession session) {
+		String name="thanasis";
+		session.setAttribute("username", name);
+		int userid=(int) session.getAttribute("id");
+		
+		String username=(String) session.getAttribute("username");
+		
+		List<Message> messages = convData.findById(1).getMessages();
+		messages.get(1).getSender().getUsername();
+		model.addAttribute("list", messages);
+		
+		model.addAttribute("conversationId",convData.findById(1).getId());
+	
+		return "MessagesChat";
+	}
+	
+	
+	
+	
 	@GetMapping("/showConversation")
 	public String showConversation(Model model, HttpSession session, @RequestParam("conversationId") int conversationId) {
 		
@@ -62,6 +81,7 @@ public class ConversationController {
 		
 		return "conversation";
 	}
+	
 
-	}	
+}	
 

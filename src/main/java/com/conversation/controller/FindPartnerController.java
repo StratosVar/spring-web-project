@@ -34,13 +34,7 @@ public class FindPartnerController {
 	
 	
 	
-	@GetMapping("/profile/partner/{id}")
-	public String profilePartner(@PathParam(value = "id")Integer id, Pageable pageable,Model model) {
-		pd.findAll();
-		Page<Partner> page=pd.findAll(pageable);
-		model.addAttribute("list",page.getContent());
-		return "ProfilePartner";
-	}
+	
 	
 	
 	@GetMapping("/users1")
@@ -86,39 +80,8 @@ public class FindPartnerController {
 	}
 	
 	
-	@GetMapping("/messagesChat")
-	public String showConversation(Model model, HttpSession session) {
-		String name="thanasis";
-		session.setAttribute("username", name);
-		
-		List<Message> messages = convData.findById(1).getMessages();
-		System.out.println(messages);
-		System.out.println(messages.get(1).getText());
-		messages.get(1).getSender().getUsername();
-		model.addAttribute("list", messages);
-		
-		
-		return "messagesChat";
-	}
-	
+
 	
 }
-
-
-
-
-
-
-
-//Page<Message> pages=messageRep.findAllByConversation(pageable,c.get());
-//
-//System.out.println(pages.getNumber()); 
-//System.out.println(pages.getTotalPages());
-//System.out.println(pages.getTotalElements());
-//System.out.println(messageRep.findAll());	
-//
-//model.addAttribute("messages",pages.getContent());
-//
-//
 
 

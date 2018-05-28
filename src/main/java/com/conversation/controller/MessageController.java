@@ -1,5 +1,7 @@
 package com.conversation.controller;
 
+import com.conversation.tools.FileAccess;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -39,7 +41,7 @@ public class MessageController {
 		
 	@PostMapping("/sendMessage")
 	public String sendMessage(Model model, HttpSession session, @RequestParam("conversationId") int conversationId , @RequestParam("text") String text) {
-		
+		System.out.println("axax");
 			if (session.getAttribute("id")==null){
 			return  "login";
 		}	
@@ -61,6 +63,9 @@ public class MessageController {
 	
 		message.setText(text);
 		
+		//To txt file for printing !!
+		FileAccess.fileWriterAccess(conversation, message);
+		
 		
 		conversation.getMessages().add(message);
 		convService.saveConversation(conversation);
@@ -68,20 +73,10 @@ public class MessageController {
 		List<Message> messages = conversation.getMessages();
 		model.addAttribute("messages", messages);
 		
-		return "conversation";
+		return "redirect:/messagesChat";
 	}
 //sxolioden
-	
-	
-	
-	@RequestMapping("/messagesChat")
-	public String messagess() {
-		
-			
-			return  "messagesChat";
-		}	
-	
-	
+
 	
 	
 	}	

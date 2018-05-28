@@ -46,14 +46,14 @@
               <!-- /input-group -->
             </div>
             <div class="col-sm-6">
-            <h4 style="color:#00b1b1;">Prasad Shankar Huddedar </h4></span>
-              <span><p>Aspirant</p></span>            
+            <h4 style="color:#00b1b1;">${partner.username} </h4></span>
+              <span><p>${partner.username}</p></span>            
             </div>
             <div class="clearfix"></div>
             <hr style="margin:5px 0 5px 0;">
     
               
-<div class="col-sm-5 col-xs-6 tital " >First Name:</div><div class="col-sm-7 col-xs-6 ">Prasad</div>
+<div class="col-sm-5 col-xs-6 tital " >First Name:</div><div class="col-sm-7 col-xs-6 ">${partner.username}</div>
      <div class="clearfix"></div>
 <div class="bot-border"></div>
 
@@ -89,7 +89,7 @@
 <div class="col-sm-5 col-xs-6 tital " >BIOGRAPHY:</div><div class="col-sm-12">I think I started out at under $3 per month 5 or 6 years ago. 
 The price has steadily increased and my latest renewal offer was $16.99 per month. Additionally last year my wife started having spam problems and it seems 
 like someone gained access to all her email correspondence. The only place that we could pin it down to was the justhost SMTP server. Support was very evasive when 
-I tried to explain what I thought happened.</div>
+I tried to explain what I thought happened.  ${partner.description}</div>
 
 
 <!-- BUTTON -->

@@ -1,6 +1,7 @@
 package com.conversation.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -14,6 +15,8 @@ import com.conversation.model.User;
 public interface PartnerData extends PagingAndSortingRepository<Partner, Integer>  {
 	
 	List<Partner> findAll();
+	
+	Optional<Partner> findById(int id);
 	
 		
 	@Query(value = "SELECT * FROM partner INNER JOIN category ON category.id=:id",  nativeQuery=true )
