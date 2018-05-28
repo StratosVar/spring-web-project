@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,15 +48,13 @@ public class PartnerController {
 	@GetMapping("/partner/registration")
 	public String profilePartners(Model model) {
 		
-		
-		
 		return "registration-partner";
 	}
 	
 	
 	@PostMapping("/partner/registration/submit")
-	public String formsubmit(@PathVariable(value = "id")Integer id,@RequestParam("username")String username, 
-			@RequestParam("password")String password,@RequestParam("email")String email,@RequestParam("phone")Integer phone,
+	public String formsubmit(@RequestParam("username")String username, @RequestParam("password")String password,
+			@RequestParam("email")String email,@RequestParam("phone")Integer phone,
 			@RequestParam("firstname")String firstName,@RequestParam("type")String role,
 			Pageable pageable,Model model,HttpSession session) {
 		
@@ -66,16 +65,22 @@ public class PartnerController {
 		System.out.println(role);
 		System.out.println(phone);
 		
+		
+		
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String hashedPassword = passwordEncoder.encode(password);
+		
+		
 		if(role.equals("partner")) {
 			Partner p=new Partner();
-			p.setPassword(password);
+			p.setPassword(hashedPassword);
 			p.setRole(role);
 			p.setUsername(username);
 			pd.save(p);
 			System.out.println("PARTNER CREATED");
 		}else if(role.equals("user")) {
 			User u=new User();
-			u.setPassword(password);
+			u.setPassword(hashedPassword);
 			u.setRole(role);
 			u.setUsername(username);
 			userData.save(u);

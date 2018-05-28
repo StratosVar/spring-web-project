@@ -8,7 +8,7 @@
 				<div class="col-sm-4"></div>
 				<div class="col-sm-4">
 					<h2>Login</h2>
-					<form class="form-inline" action="userCheck" method="post">
+					<form class="form-inline" action="validation" method="post">
 						<div class="form-group">
 							<label for="email">Usename:</label> <input type="username"
 								class="form-control" id="username" placeholder="Enter username"

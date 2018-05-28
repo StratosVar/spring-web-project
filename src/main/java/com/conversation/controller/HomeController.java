@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,6 +59,37 @@ public class HomeController {
 		return "login";
 		}
 	
+	
+	}
+	
+	@PostMapping("/validation")
+	public String loginValidation(@RequestParam ("username") String username, @RequestParam("pwd") String password, HttpSession session) {
+		
+		
+		
+		
+		//System.out.println(passwordEncoder.matches(password, john.getPassword()));
+		
+		
+		
+		
+		if(userData.existsByUsername(username)) {
+			User u=userData.findByUsername(username);
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			String hashedPassword = passwordEncoder.encode(password);
+			
+			System.out.println(hashedPassword.matches(u.getPassword()));
+			
+			if(hashedPassword.matches(u.getPassword())) {
+				session.setAttribute("id", userService.getUserId(username));
+				session.setAttribute("username", userData.findByUsername(username));
+				session.setAttribute("loggedin",true);
+				return "redirect:/messagesChat";
+			}
+			return "login";
+		}else {
+			return "login";
+		}
 	
 	}
 }

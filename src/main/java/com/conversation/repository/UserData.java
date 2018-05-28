@@ -11,4 +11,5 @@ public interface UserData extends PagingAndSortingRepository<User, Integer>  {
 List<User> findAllByUsernameOrPassword(String u,String pwd);
 User findById(int id);
 User findByUsername(String uname);
+boolean existsByUsername(String uname);
 }
