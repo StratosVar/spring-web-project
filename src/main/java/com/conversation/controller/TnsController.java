@@ -56,7 +56,7 @@ public class TnsController {
     }
 	
 	@GetMapping("/h")
-    public String login(HttpSession session,Model model) {
+    public String login1(HttpSession session,Model model) {
 		List<Partner> a = pd.findAll();
 		model.addAttribute("list",a);
 		model.addAttribute("total",pd.findAll().size());
@@ -70,6 +70,10 @@ public class TnsController {
 		r.setReviewer(p);
 		p.getReviews().add(r);
 		//pd.save(p);
+		
+		      
+	//	List l=pd.findAllByCategoryIdOrDescriptionContaining(2, "pathologos");
+	
         return "profile";
     }
 	
@@ -78,8 +82,7 @@ public class TnsController {
 	@RequestMapping("/add")
     public String review(HttpSession session,Model model) {
 	
-		
-        return "SearchUsers";
+        return "profile";
     }
 	
 

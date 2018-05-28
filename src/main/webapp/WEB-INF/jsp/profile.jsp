@@ -27,36 +27,37 @@
 
 			</div>
 			<div class="col-sm-6 profile_box">
+				<form action="get" >
+					<table class="property_input">
+						<col width="150">
+						<tr>
 
-				<table class="property_input">
-					<col width="150">
-					<tr>
+							<td><div class="property_input">First Name:</div></td>
+							<td><input type="text" name="firstName"></td>
+						</tr>
+						<tr>
+							<td><div class="property_input">Last Name:</div></td>
+							<td><input type="text" name="firstName"></td>
+						</tr>
+						<tr>
+							<td><div class="property_input">Username:</div></td>
+							<td><input type="text" name="firstName"></td>
+						</tr>
 
-						<td><div class="property_input">First Name:</div></td>
-						<td><input type="text" name="firstName"></td>
-					</tr>
-					<tr>
-						<td><div class="property_input">Last Name:</div></td>
-						<td><input type="text" name="firstName"></td>
-					</tr>
-					<tr>
-						<td><div class="property_input">Username:</div></td>
-						<td><input type="text" name="firstName"></td>
-					</tr>
-
-					<tr>
-						<td><div class="property_input">Password:</div></td>
-						<td><input type="Password" name="firstName" min=5></td>
-					</tr>
-					<tr>
-						<td><div class="property_input">Email:</div></td>
-						<td><input type="text" name="firstName"></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td><input class="submit" type="submit" value="Update"></td>
-					</tr>
-				</table>
+						<tr>
+							<td><div class="property_input">Password:</div></td>
+							<td><input type="Password" name="firstName" min=5></td>
+						</tr>
+						<tr>
+							<td><div class="property_input">Email:</div></td>
+							<td><input type="text" name="firstName"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><input class="submit" type="submit" value="Update"></td>
+						</tr>
+					</table>
+				</form>
 			</div >
 		</div>
 	</div>

@@ -3,6 +3,7 @@ package com.conversation.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,6 +37,12 @@ public class Review {
 	@JoinColumn(name="reviewer_id",nullable = false)
 	private User reviewer;
 
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "partner_id")
+	private Partner partner;
+	
 
 	public int getId() {
 		return id;
@@ -76,6 +83,18 @@ public class Review {
 		this.reviewer = reviewer;
 	}
 
+
+	public Partner getPartner() {
+		return partner;
+	}
+
+
+	public void setPartner(Partner partner) {
+		this.partner = partner;
+	}
+
+	
+	
 	
 	
 	

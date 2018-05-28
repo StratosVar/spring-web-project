@@ -31,8 +31,11 @@ public class Partner extends User {
 	@Column(name = "description")
 	private String description;
 	
-	@OneToMany(fetch = FetchType.LAZY,cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY,mappedBy="partner")
 	private List<Review> reviews=new ArrayList<Review>();
+	
+	@Column(name= "total_points")
+	private double totalPoints;
 
 	public Category getCategory() {
 		return Category;
@@ -56,6 +59,19 @@ public class Partner extends User {
 
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
+	}
+	
+	public double getTotalPoints() {
+		return totalPoints;
+	}
+
+	public void setTotalPoints(double totalPoints) {
+		this.totalPoints = totalPoints;
+	}
+
+	@Override
+	public String toString() {
+		return "Partner [Category=" + Category + ", description=" + description + ", reviews=" + reviews + "]";
 	}
 	
 	

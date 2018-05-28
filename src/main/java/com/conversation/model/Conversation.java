@@ -41,7 +41,7 @@ public class Conversation {
 	@JoinColumn(name="interlocutor_id")
 	private User interlocutor;
 	
-	@OneToMany(fetch = FetchType.LAZY,cascade=CascadeType.ALL)//mappedBy="conversation"
+	@OneToMany(fetch = FetchType.LAZY,cascade=CascadeType.ALL)  //mappedBy="conversation"
 	private List<Message> messages = new ArrayList<>();
 
 	public int getId() {
