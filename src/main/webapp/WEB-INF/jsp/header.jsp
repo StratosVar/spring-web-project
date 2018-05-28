@@ -11,6 +11,7 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/basicStyle.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/profile_style.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/SearchUsers.css">
+   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/chat.css">
 
   <script src="${pageContext.request.contextPath}/js/basic.js"></script>
 

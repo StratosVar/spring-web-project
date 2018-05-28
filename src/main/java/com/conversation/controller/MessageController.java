@@ -71,5 +71,18 @@ public class MessageController {
 		return "conversation";
 	}
 //sxolioden
+	
+	
+	
+	@RequestMapping("/messagesChat")
+	public String messagess() {
+		
+			
+			return  "messagesChat";
+		}	
+	
+	
+	
+	
 	}	
 

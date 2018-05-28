@@ -1,0 +1,136 @@
+body{
+    font-family: 'Raleway', sans-serif;
+	background-color: #ACCEDC;
+	margin: 50px 0px;
+}
+.main-section small{
+	font-size: 12px;
+}
+.main-section h3, .main-section h5{
+	margin: 0px;
+}
+.main-section{
+	width: 960px;
+	background-color: #fff;
+	margin: auto;
+}
+
+
+
+.body-section{
+	clear: both;
+	overflow: hidden;
+	width: 100%;
+}
+
+.right-section{
+	width: 90%;
+	
+	height: 500px;
+	background-color: #F6F6F6;
+	position: relative;
+	flex-direction: column-reverse;
+    display: flex;
+}
+.message{
+	
+	font-family: sans-serif;
+}
+.message ul{
+	padding: 0px;
+	list-style: none;
+	margin: 0px auto;
+	width: 90%;
+	overflow:hidden;
+}
+.message ul li{
+	position: relative;
+	width: 80%;
+	padding: 15px 0px;
+	clear: both;
+}
+.message ul li.msg-left{
+	float: left;
+}
+.message ul li.msg-left img{
+	position: absolute;
+	width: 40px;
+	bottom: 30px;
+}
+.message ul li.msg-left .msg-desc{
+	margin-left: 70px;
+	font-size: 12px;
+	background: #E8E8E8;
+	padding:5px 10px;
+	border-radius: 5px 5px 5px 0px;
+	position: relative;
+}
+.message ul li.msg-left .msg-desc:before{
+	position: absolute;
+	content: '';
+	border:10px solid transparent;
+	border-bottom-color: #E8E8E8;
+	bottom: 0px;
+	left: -10px;
+}
+.message ul li.msg-left small{
+	float: right;
+	color: #c1c1c1;
+}
+
+.message ul li.msg-right{
+	float: right;
+}
+.message ul li.msg-right img{
+	position: absolute;
+	width: 40px;
+	right: 0px;
+	bottom: 30px;
+}
+.message ul li.msg-right .msg-desc{
+	margin-right: 70px;
+	font-size: 12px;
+	background: #cce5ff;
+	color: #004085;
+	padding:5px 10px;
+	border-radius: 5px 5px 5px 0px;
+	position: relative;
+}
+.message ul li.msg-right .msg-desc:before{
+	position: absolute;
+	content: '';
+	border:10px solid transparent;
+	border-bottom-color: #cce5ff;
+	bottom: 0px;
+	right: -10px;
+}
+.message ul li.msg-right small{
+	float: right;
+	color: #c1c1c1;
+	margin-right: 70px;
+}
+.message ul li.msg-day{
+	border-top:1px solid #EBEBEB;
+	width: 100%;
+	padding: 0px;
+	margin: 15px 0px;
+}
+.message ul li.msg-day small{
+	position: absolute;
+	top: -10px;
+	background: #F6F6F6;
+	color: #c1c1c1;
+	padding: 3px 10px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.right-section-bottom input{
+	border:0px;
+	padding:8px 5px;
+	width:calc(100% - 150px);
+	
+}
+}
+
+
