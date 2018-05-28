@@ -98,7 +98,7 @@ public class FindPartnerController {
 		model.addAttribute("list", messages);
 		
 		
-		return "MessagesChat";
+		return "messagesChat";
 	}
 	
 	
