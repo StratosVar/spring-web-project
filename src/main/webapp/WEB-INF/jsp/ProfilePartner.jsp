@@ -1,4 +1,5 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:import url="header.jsp"></c:import>  
 
 <div class="container">
@@ -46,11 +47,14 @@
               <!-- /input-group -->a
             </div>
             <div class="col-sm-6">
-            <h4 style="color:#00b1b1;">${partner.username} </h4></span>
-              <span><p>${partner.username}</p></span>            
+            <h4 style="color:#00b1b1;">${partner.username} </h4>
+              <p><span>${partner.username}</span> </p>           
             </div>
             <div class="clearfix"></div>
             <hr style="margin:5px 0 5px 0;">
+    
+    
+    		
     
               
 <div class="col-sm-5 col-xs-6 tital " >First Name:</div><div class="col-sm-7 col-xs-6 ">${partner.username}</div>
@@ -106,10 +110,10 @@ I tried to explain what I thought happened.  ${partner.description}</div>
 		<div class="modal-body">
 			
             <!-- content goes here -->
-			<form>
+			<form action="/partner/profile/start/${partner.id}">
               <div class="form-group">
                 <label for="conversationTitle">Title</label>
-                <input type="text" class="form-control" id="conversationTitleinput" placeholder="Enter Title">
+                <input type="text" class="form-control" id="conversationTitleinput" name="title" placeholder="Enter Title">
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>

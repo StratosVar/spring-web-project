@@ -1,5 +1,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="header.jsp"></c:import>
+
+<style>
+.st {
+	
+  padding-top:20px;
+  padding-bottom:100px;
+}
+
+</style>
+
+
+
 <center>
 	<div class="st">
 
@@ -32,6 +44,12 @@
 		<div>
 			<a href="">Forgot your password?</a><br>
 		</div>
+		<c:if test="${usernameError == true}"> 		
+		<h6>That username does not exist</h6>
+		</c:if>
+		<c:if test="${passwordError == true}"> 		
+		<h6>Wrong password</h6>
+		</c:if>
 </center>
 
 <c:import url="footer.jsp"></c:import>  

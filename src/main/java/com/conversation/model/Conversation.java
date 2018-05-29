@@ -15,8 +15,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.OrderBy;
+import org.hibernate.annotations.SortNatural;
 
 import com.conversation.model.Message;
 
@@ -42,7 +46,9 @@ public class Conversation {
 	private User interlocutor;
 	
 	@OneToMany(fetch = FetchType.LAZY,cascade=CascadeType.ALL)  //mappedBy="conversation"
-	private List<Message> messages = new ArrayList<>();
+	@SortNatural
+	@OrderColumn(name = "id")
+	private List<Message> messages= new ArrayList<>();
 
 	public int getId() {
 		return id;

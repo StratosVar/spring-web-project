@@ -46,41 +46,27 @@ public class ConversationController {
 		return "conversations";
 	}
 		
-	@GetMapping("/messagesChat")
+	@GetMapping("/showConversation")
 	public String showConversation(@RequestParam(value="conversationId",required=false) Integer conversationId,Model model, HttpSession session) {
-		String name="thanasis";
-		session.setAttribute("username", name);
-		int userid=(int) session.getAttribute("id");
 		
-		String username=(String) session.getAttribute("username");
+		List<Message> messages = convData.findById(conversationId).get().getMessages();
 		
-		List<Message> messages = convData.findById(1).getMessages();
-		messages.get(1).getSender().getUsername();
-		model.addAttribute("list", messages);
+		model.addAttribute("list", messages);	
+		model.addAttribute("conversationId",conversationId);
+	
+		return "MessagesChat";
+	}
+	
+	
+	@GetMapping("/startConversation")
+	public String startConversation(Model model, HttpSession session) {
 		
-		model.addAttribute("conversationId",convData.findById(1).getId());
 	
 		return "MessagesChat";
 	}
 	
 	
 	
-	
-	@GetMapping("/showConversation")
-	public String showConversation(Model model, HttpSession session, @RequestParam("conversationId") int conversationId) {
-		
-		if (session.getAttribute("id")==null){
-			return  "login";
-		}
-		
-		Conversation conversation = (Conversation) convService.getConversationByID(conversationId);
-		
-		List<Message> messages = conversation.getMessages();
-		model.addAttribute("messages", messages);
-		
-		
-		return "conversation";
-	}
 	
 
 }	

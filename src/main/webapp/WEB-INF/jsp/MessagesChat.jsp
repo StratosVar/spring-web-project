@@ -26,8 +26,7 @@
 				<ul>
 					<li class="msg-left">
 						<div class="msg-left-sub">
-							<img
-								src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEPQDZ4QSXjrXEAaHaRDTjX_4_Lfha2QiYM30-mD9gUTErZL4f">
+							<img class="img-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEPQDZ4QSXjrXEAaHaRDTjX_4_Lfha2QiYM30-mD9gUTErZL4f">
 							<div class="msg-desc">Lorem ipsum dolor sit amet,
 								consectetur adipisicing elit, sed do eiusmod tempor incididunt
 								ut labore et dolore magna aliqua.</div>
@@ -133,7 +132,7 @@
 
 
 
-			<form action="/sendMessage" method="POST">
+			<form action="/sendMessage" method="POST" accept-charset="ISO-8859-1">
 
 				<input type="text" name="text" placeholder="type here..."> <input
 					type="hidden" name="conversationId" value="${conversationId}">

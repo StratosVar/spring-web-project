@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
@@ -53,9 +54,17 @@
       <div class="collapse navbar-collapse" id="myNavbar">
 
         <div class="nav navbar-nav navbar-right">
-          <a class="navbar-brand" href="#">search</a>
-          <a class="navbar-brand" href="#">conversations</a>
-          <a class="navbar-brand" href="#">profile</a>
+          <a class="navbar-brand" href="${pageContext.request.contextPath}/users1">search</a>
+          <a class="navbar-brand" href="${pageContext.request.contextPath}/conversations/?id=${sessionScope.id}">conversations</a>
+          <a class="navbar-brand" href="${pageContext.request.contextPath}/partner/">profile</a>
+           <c:if test="${sessionScope.loggedin == null}" > 
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/login">login</a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/partner/registration">Register</a>
+          </c:if>
+          <c:if test="${sessionScope.loggedin == true}" > 
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/logout">logout</a>
+          </c:if>
+          
 
           
         </div>

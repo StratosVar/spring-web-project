@@ -1,4 +1,5 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:import url="header.jsp"></c:import>  
 
 <div class="container">
@@ -23,7 +24,7 @@
 	<section class="containerUsers jumbotron">
 
 		<!-- SEARCH FILTERS -->	
-		<div class="col-md-3 sidenav">
+		<div class="col-md-4 sidenav">
 			<form action="/usersResults" method="get" autocomplete="on">
 
 
@@ -85,8 +86,16 @@
 	<!-- END OFSEARCH FILTERS -->	
 
 	<div class="col-lg-8 text-left"> <!-- START OF CONTAINER 8 COLUMN -->
-
+		
+		<c:if test="${error == true}"> 
+			<div class="col-xs-12 text-right">
+		<h6>NO RESULTS FOUND!</h6>
+		</div>
+		</c:if>
+		
 		<c:forEach var="partner" items="${list}">
+		<c:set var="str" value="${partner.description}" />
+			
 		<figure class="col-sm-6">
 
 			<div class="flex-container">		
@@ -102,72 +111,21 @@
 				<div class="comment-box">
 					<div class="comment-head">
 						<h6 class="comment-name">
-							<a href="http://creaticode.com/blog">Lorena Rojero</a>
+							<a href="/partner/profile/${partner.id}">${partner.username}</a>
 						</h6>
 						<h6>Category: ${partner.category.category }</h6>
 					</div>
-					<div class="comment-content">Lorem ipsum dolor sit amet,
-						consectetur adipisicing elit. Velit omnis animi et iure laudantium
-					vitae, praesentium optio, sapiente distinctio illo?</div>
+					<div class="comment-content"> ${fn:substring(str,0,187)} </div>
 				</div>
 			</div>
 
 		</figure>
 	</c:forEach>
 
-	<figure class="col-md-4">
-		<div class="flex-container">		
-			<div class="comment-avatar">
-				<img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt="profile pic" >
-
-			</div>
-			<!-- Contenedor del Comentario -->
-			<div class="comment-box">
-				<div class="comment-head">
-					<h6 class="comment-name">
-						<a href="http://creaticode.com/blog">Lorena Rojero</a>
-					</h6>
-				</div>
-				<div class="comment-content">Lorem ipsum dolor sit amet,
-					consectetur adipisicing elit. Velit omnis animi et iure laudantium
-				vitae, praesentium optio, sapiente distinctio illo?</div>
-			</div>
-		</div>
-	</figure>
-
-
-
-</figure>
-
-
-<figure class="col-md-4">
-	<div class="flex-container">		
-		<div class="comment-avatar">
-			<img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt="profile pic" >
-			<!-- BUTTONS HERE -->
-			<button type="button" class="btn btn-default btn-xs center-block"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
-			<a href="#" class="btn btn-info center-block" role="button">Link Button</a>
-		</div>
-		<!-- Contenedor del Comentario -->
-		<div class="comment-box">
-			<div class="comment-head">
-				<h6 class="comment-name">
-					<a href="http://creaticode.com/blog">Lorena Rojero</a>
-				</h6>
-			</div>
-			<div class="comment-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?</div>
-		</div>
-	</div>
-</figure>
-
 
 
 </div> <!--END OF BOOTSTRAP   -->
 </section>
-
-
-
-
 
 
 <c:set var="pagenumber" value="${1}"/>

@@ -187,7 +187,7 @@ ul {
 	clear: both;
 }
 /**
- * Caja del Comentario
+ * Users-xristes
  ---------------------------*/
 .comments-list .comment-box {
 	width: 680px;
@@ -308,7 +308,7 @@ ul {
 
 
 .containerUsers {
-	
+  width:100%;
   margin-top: 20px;
   display: inline-table;
   flex-wrap: wrap;
@@ -402,3 +402,25 @@ p.commenttextsize{
 
 /*END REVIEW SYSTEM STYLING profile page
 */
+
+
+
+/* Converasations Css */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 1.5rem;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+tr:hover {background-color:white;}
+
+
+#conversationsTable h3{
+  color:black;
+}
+/* Converasations Css */

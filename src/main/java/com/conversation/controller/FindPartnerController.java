@@ -33,10 +33,6 @@ public class FindPartnerController {
 	ConversationData convData;
 	
 	
-	
-	
-	
-	
 	@GetMapping("/users1")
 	public String findPartner(Pageable pageable,Model model) {
 		pd.findAll();
@@ -45,25 +41,32 @@ public class FindPartnerController {
 		return "SearchUsers";
 	}
 	
-
-	
-	
-	
 	@GetMapping("/usersResults")
-	public String findPartnerResults(@RequestParam(name = "star", defaultValue="1") Double star,@RequestParam("category") int id,@RequestParam(name = "keyword",defaultValue="NOVALUE") String keyword,
-			Pageable pageable) {
-		pd.findAll();
-		System.out.println(id);
+	public String findPartnerResults(@RequestParam(name = "star", defaultValue = "1") Double star,
+			@RequestParam(name = "category", required = false, defaultValue = "0") Integer id,
+			@RequestParam(name = "keyword", defaultValue = "NOVALUE") String keyword, Pageable pageable, Model model) {
+		pd.findAll();//need this because of silly bug
+		
+		
+		try {
 		List<Partner> list=pd.findAllByCategoryIdOrDescriptionContaining(id, keyword,pageable);
+		
 		Iterator<Partner> ip = list.iterator();
 		while (ip.hasNext()) {
-
+			Partner p=null;
 			List<Review> l = ip.next().getReviews();
 			double points = 0;
 			for (Review r : l) {
 				points += r.getPoints();
 				System.out.println(points);
+				//r.getPartner().setTotalPoints(points);
+				p=r.getPartner();
 			}
+			
+			if(p!=null) {
+			p.setTotalPoints(points);
+			}
+			
 			double d=(double)l.size();
 															System.out.println(d);
 															System.out.println(points/d);
@@ -73,9 +76,16 @@ public class FindPartnerController {
 			
 
 		} // end while
-
-																System.out.println(list.size());
 		
+		
+																System.out.println(list.size());
+		model.addAttribute("list", list);
+		if(list.size()==0) {
+			model.addAttribute("error", true);
+		}
+		}catch (NullPointerException e) {
+			model.addAttribute("error", true);
+		}
 		return "SearchUsers";
 	}
 	

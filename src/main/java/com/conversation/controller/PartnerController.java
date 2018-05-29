@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.conversation.model.Conversation;
 import com.conversation.model.Message;
@@ -42,6 +43,9 @@ public class PartnerController {
 	
 	@Autowired
 	PartnerData pd;
+	
+	@Autowired
+	ConversationData convData;
 	
 	
 	
@@ -100,6 +104,38 @@ public class PartnerController {
 		Optional<Partner> p=pd.findById(id);
 		model.addAttribute("partner",p.get());
 		return "ProfilePartner";
+	}
+	
+	
+	@GetMapping("/partner/profile/start/{id}")
+	public RedirectView startConversation(@PathVariable(value = "id")Integer id,@RequestParam("title")String title,@RequestParam("text")String text, 
+			Pageable pageable,Model model,HttpSession session) {
+		
+		int userid=(int) session.getAttribute("id");
+		
+	
+		Optional<Partner> p=pd.findById(id);
+		User u=userData.findById(userid);
+		
+		Conversation c=new Conversation();
+		c.setInterlocutor(p.get());
+		c.setCreator(u);
+		c.setTitle(title);
+		
+		Message m=new Message();
+		m.setSender(u);
+		m.setReceiver(p.get());
+		m.setText(text);
+		m.setUnread(true);
+		c.getMessages().add(m);
+		
+		convData.save(c);
+		model.addAttribute("uid", c.getId());
+		
+		
+		RedirectView redirectView = new RedirectView();
+		redirectView.setUrl("http://127.0.0.1:8080/showConversation?conversationId="+c.getId());
+		return redirectView;
 	}
 	
 	
