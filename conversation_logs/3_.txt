@@ -1,0 +1,24 @@
+com.conversation.model.Message@315059b2
+com.conversation.model.Message@94efb22
+com.conversation.model.Message@74ba1587
+com.conversation.model.Message@1da73db0
+com.conversation.model.Message@315ba662
+com.conversation.model.Message@38793fd6
+com.conversation.model.Message@5407c195
+com.conversation.model.Message@7dcccbad
+com.conversation.model.Message@5d622e55
+com.conversation.model.Message@1679e770
+com.conversation.model.Message@8cad80d
+com.conversation.model.Message@1f04ccca
+com.conversation.model.Message@7316d3b
+com.conversation.model.Message@3067fef5
+com.conversation.model.Message@46452ab9
+com.conversation.model.Message@63c84e5
+com.conversation.model.Message@54c1cb60
+com.conversation.model.Message@646130cb
+com.conversation.model.Message@819e836
+com.conversation.model.Message@1c89970b
+Message [id=0, sender=com.conversation.model.User@2d7fea69, receiver=Partner [Category=com.conversation.model.Category@70bc6a5, description=Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,, reviews=[com.conversation.model.Review@4da6690a]], dateTime=null, unread=false, text=123]
+Message [id=0, sender=com.conversation.model.User@19111983, receiver=Partner [Category=com.conversation.model.Category@2fc68d06, description=Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,, reviews=[com.conversation.model.Review@6aea0881]], dateTime=null, unread=false, text=123]
+Message [id=0, sender=com.conversation.model.User@65d42efa, receiver=Partner [Category=com.conversation.model.Category@44b77f2b, description=Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,, reviews=[com.conversation.model.Review@57181f4]], dateTime=null, unread=false, text=123]
+Message [id=0, sender=com.conversation.model.User@62f82bef, receiver=Partner [Category=com.conversation.model.Category@a996698, description=Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,, reviews=[com.conversation.model.Review@4b54a10c]], dateTime=null, unread=false, text=123]
