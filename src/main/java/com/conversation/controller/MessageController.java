@@ -48,7 +48,7 @@ public class MessageController {
 			@RequestParam(value="text",required=false) String text) {
 		
 	
-		System.out.println("axax");
+		
 			if (session.getAttribute("id")==null){
 			return  "login";
 		}	
@@ -58,6 +58,7 @@ public class MessageController {
 		int senderId =(int) session.getAttribute("id");
 		User sender = userService.getUser(senderId);
 		message.setSender(sender);
+		
 		int convId =conversationId;
 		Conversation conversation = convService.getConversationByID(convId);
 		

@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Skillfair</title>
+  <title>Ask A Pro</title>
   <meta charset="utf-8"/>
 
   <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
@@ -38,6 +38,15 @@
   
 </head>
 <body>
+  <style>
+  .nav a:hover {
+    background-color: #27c77ded;
+  
+}
+</style>
+
+
+
   <nav class=" navbar ">
     <div class="container-fluid">
 
@@ -49,14 +58,18 @@
           <span class="icon-bar"></span>                        
         </button>
 
-        <a class="navbar-brand" href="#"><p style=" font-size: 180%;">Conversations</p></a>
+        <a class="navbar-brand" href="#"><p style=" font-weight:bold; font-size: 180%;color:#27c77ded">Ask a pro</p></a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
 
         <div class="nav navbar-nav navbar-right">
           <a class="navbar-brand" href="${pageContext.request.contextPath}/users1">search</a>
+          <c:if test="${sessionScope.loggedin == true}" > 
           <a class="navbar-brand" href="${pageContext.request.contextPath}/conversations/?id=${sessionScope.id}">conversations</a>
-          <a class="navbar-brand" href="${pageContext.request.contextPath}/partner/">profile</a>
+           </c:if>
+          <c:if test="${sessionScope.loggedin == true}" > 
+          <a class="navbar-brand" href="${pageContext.request.contextPath}/profile">profile</a>
+          </c:if>
            <c:if test="${sessionScope.loggedin == null}" > 
             <a class="navbar-brand" href="${pageContext.request.contextPath}/login">login</a>
             <a class="navbar-brand" href="${pageContext.request.contextPath}/partner/registration">Register</a>

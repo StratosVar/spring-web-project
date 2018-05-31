@@ -1,6 +1,8 @@
 package com.conversation.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +22,7 @@ import com.conversation.model.Conversation;
 import com.conversation.model.Message;
 import com.conversation.model.User;
 import com.conversation.repository.ConversationData;
+import com.conversation.repository.MessageData;
 import com.conversation.service.ConversationService;
 import com.conversation.service.UserService;
 
@@ -35,34 +38,75 @@ public class ConversationController {
 	@Autowired
 	ConversationData convData;
 	
+	@Autowired
+	MessageData md;
+	
 	@GetMapping("/conversations")
 	public String loadConversations(Model model, HttpSession session) {
 		
+		
+		
+		
 		int id = (int) session.getAttribute("id");
 		List<Conversation> conversations = convService.getConversationsByUserID(id);
-
+		
+		
 		model.addAttribute("conversations", conversations);
-		System.out.println(conversations);	
+		
 		return "conversations";
 	}
 		
 	@GetMapping("/showConversation")
 	public String showConversation(@RequestParam(value="conversationId",required=false) Integer conversationId,Model model, HttpSession session) {
 		
+		
+		Optional<Conversation> conversation=convData.findById(conversationId);
+		try {
+		int id=(int) session.getAttribute("id");
+		
+		if(session.getAttribute("id")==null) {
+			return "login";
+		}else if(!(conversation.get().getCreator().getId()==id || conversation.get().getInterlocutor().getId()==id )){
+			return "login";
+		}
+		}catch (NullPointerException | NoSuchElementException ex ) {
+			//ex.printStackTrace();
+			return "login";
+		}
 		List<Message> messages = convData.findById(conversationId).get().getMessages();
 		
 		model.addAttribute("list", messages);	
 		model.addAttribute("conversationId",conversationId);
+		model.addAttribute("conversation",conversation.get());
+		model.addAttribute("totalMessages",conversation.get().getMessages().size());
 	
 		return "MessagesChat";
 	}
 	
 	
-	@GetMapping("/startConversation")
-	public String startConversation(Model model, HttpSession session) {
+	@GetMapping("/showConversation/download")
+	public String showConversationDownload(@RequestParam(value="conversationId",required=false) Integer conversationId,Model model, HttpSession session) {
 		
+		
+		Optional<Conversation> conversation=convData.findById(conversationId);
+		try {
+		int id=(int) session.getAttribute("id");
+		
+		if(session.getAttribute("id")==null) {
+			return "login";
+		}else if(!(conversation.get().getCreator().getId()==id || conversation.get().getInterlocutor().getId()==id )){
+			return "login";
+		}
+		}catch (NullPointerException | NoSuchElementException ex ) {
+			//ex.printStackTrace();
+			return "login";
+		}
+		List<Message> messages = convData.findById(conversationId).get().getMessages();
+		
+		model.addAttribute("list", messages);	
+		model.addAttribute("conversationId",conversationId);
 	
-		return "MessagesChat";
+		return "MessagesDownload";
 	}
 	
 	

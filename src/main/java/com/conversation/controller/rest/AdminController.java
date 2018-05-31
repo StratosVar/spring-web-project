@@ -128,7 +128,7 @@ public class AdminController {
 		pd.save(p);
 		
 		
-		return "admin";
+		return "/thanasis/admin";
 	}
 
 	@ResponseBody

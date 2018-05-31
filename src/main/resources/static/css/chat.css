@@ -50,6 +50,7 @@ body{
 	clear: both;
 }
 .message ul li.msg-left{
+	width:70%
 	float: left;
 }
 .message ul li.msg-left img{
@@ -64,22 +65,18 @@ body{
 	padding:5px 10px;
 	border-radius: 5px 5px 5px 0px;
 	position: relative;
+	width:40%
 }
-.message ul li.msg-left .msg-desc:before{
-	position: absolute;
-	content: '';
-	border:10px solid transparent;
-	border-bottom-color: #E8E8E8;
-	bottom: 0px;
-	left: -10px;
-}
+
 .message ul li.msg-left small{
-	float: right;
+	float: none;
 	color: #c1c1c1;
+	padding-left:50px;
 }
 
 .message ul li.msg-right{
 	float: right;
+	width:40%;
 }
 .message ul li.msg-right img{
 	position: absolute;
@@ -90,20 +87,14 @@ body{
 .message ul li.msg-right .msg-desc{
 	margin-right: 70px;
 	font-size: 12px;
-	background: #cce5ff;
+	background:#38cb86;  /*#cce5ff*/
 	color: #004085;
 	padding:5px 10px;
 	border-radius: 5px 5px 5px 0px;
 	position: relative;
+	width:70%
 }
-.message ul li.msg-right .msg-desc:before{
-	position: absolute;
-	content: '';
-	border:10px solid transparent;
-	border-bottom-color: #cce5ff;
-	bottom: 0px;
-	right: -10px;
-}
+
 .message ul li.msg-right small{
 	float: right;
 	color: #c1c1c1;
@@ -128,7 +119,7 @@ body{
 .right-section-bottom input{
 	border:0px;
 	padding:8px 5px;
-	width:calc(100% - 150px);
+	width:72%;
 	
 }
 }

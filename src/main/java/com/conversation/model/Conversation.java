@@ -47,7 +47,7 @@ public class Conversation {
 	
 	@OneToMany(fetch = FetchType.LAZY,cascade=CascadeType.ALL)  //mappedBy="conversation"
 	@SortNatural
-	@OrderColumn(name = "id")
+	@OrderColumn(name = "date_time")
 	private List<Message> messages= new ArrayList<>();
 
 	public int getId() {

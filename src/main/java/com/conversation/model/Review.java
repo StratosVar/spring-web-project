@@ -20,11 +20,16 @@ import javax.validation.constraints.NotNull;
 @Table(name= "review")
 public class Review {
 	
+	public Review() {}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	@NotNull
 	private int id;
+	
+	@Column(name = "title")
+	private String title;
 	
 	@Column(name = "review")
 	private String review;
@@ -91,6 +96,16 @@ public class Review {
 
 	public void setPartner(Partner partner) {
 		this.partner = partner;
+	}
+
+
+	public String getTitle() {
+		return title;
+	}
+
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	

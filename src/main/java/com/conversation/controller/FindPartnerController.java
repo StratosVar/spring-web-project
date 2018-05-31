@@ -53,32 +53,19 @@ public class FindPartnerController {
 		
 		Iterator<Partner> ip = list.iterator();
 		while (ip.hasNext()) {
-			Partner p=null;
-			List<Review> l = ip.next().getReviews();
-			double points = 0;
-			for (Review r : l) {
-				points += r.getPoints();
-				System.out.println(points);
-				//r.getPartner().setTotalPoints(points);
-				p=r.getPartner();
-			}
-			
-			if(p!=null) {
-			p.setTotalPoints(points);
-			}
-			
-			double d=(double)l.size();
-															System.out.println(d);
-															System.out.println(points/d);
-			if (points/d < star) {
+			Partner p=ip.next();
+			List<Review> reviewlist = p.getReviews();
+			System.out.println(reviewlist.size());
+			//double d=(double)reviewlist.size();
+			System.out.println(star);
+			System.out.println(p.getTotalPoints());
+			if(p.getTotalPoints() < star) {
 				ip.remove();
 			}
-			
-
 		} // end while
 		
-		
-																System.out.println(list.size());
+		System.out.println(list.size());
+															
 		model.addAttribute("list", list);
 		if(list.size()==0) {
 			model.addAttribute("error", true);

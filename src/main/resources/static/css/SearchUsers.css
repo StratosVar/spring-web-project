@@ -406,18 +406,18 @@ p.commenttextsize{
 
 
 /* Converasations Css */
-table {
+.table-conversations {
     border-collapse: collapse;
     width: 100%;
     font-size: 1.5rem;
 }
 
-th, td {
+.table-conversations th, td {
     padding: 8px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
-tr:hover {background-color:white;}
+.table-conversations tr:hover {background-color:white;}
 
 
 #conversationsTable h3{

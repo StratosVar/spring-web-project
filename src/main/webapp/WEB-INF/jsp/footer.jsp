@@ -16,13 +16,13 @@
 <footer class="footer">
         <div class="row">
         	<div class="col-md-3">
-            	<h2>Logo</h2>
-                <p>Suspendisse hendrerit tellus laoreet luctus pharetra. Aliquam porttitor vitae orci nec ultricies. Curabitur vehicula, libero eget faucibus faucibus, purus erat eleifend enim, porta pellentesque ex mi ut sem.</p>
-                <p>© 2014 BS3 UI Kit, All rights reserved</p>
+            	<h2>Ask a pro </h2>
+                <p>Web project for coding bootcamp</p>
+                <p>2018 All rights reserved</p>
             </div>
         	<div class="col-md-2 footer-menu">
             	<h4>Menu</h4>
-            	<div class="col-md-2">
+            	<div class="col-md-0">
                     <ul class="pages">
                         <li><a href="#">Travel</a></li>
                         <li><a href="#">Nature</a></li>

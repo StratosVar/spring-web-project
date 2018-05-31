@@ -7,13 +7,17 @@
 <section class="jumbotron">
 	<div class="container" id="conversationsTable">
 		<h3>Your Conversations</h3>
-		<table class="table table-condensed">
+		<table class="table-conversations table-condensed">
 			
 			<tr>
-				<td>Interlocutor</td>
+				
 				<td>Conversation Title</td>
+				<td>Creator</td>
+				<td>Interlocutor</td>
 				<td>Time of Last Message</td>
 				<td>Unread Messages</td>
+				<td>Open Conversation</td>
+				<td>Download</td>
 			</tr>
 			
 			
@@ -24,14 +28,18 @@
 								<c:url var="startConversation" value="/showConversation" >
 									<c:param name="conversationId" value="${conversation.id}"/>	
 								</c:url>
-
+								<c:url var="startConversationDownload" value="/showConversation/download" >
+									<c:param name="conversationId" value="${conversation.id}"/>	
+								</c:url>
 
 								<tr>
-									<td>${conversation.id}</td>
 									<td>${conversation.title}</td>
 									<td>${conversation.creator.username}</td>
 									<td>${conversation.interlocutor.username}</td>
+									<td>${conversation.interlocutor.username}</td>
+									<td>${conversation.interlocutor.username}</td>
 									<td><a href="${startConversation}">Conversation</a>
+									<td><a href="${startConversationDownload}">link</a>
 									<td>
 								</tr>
 

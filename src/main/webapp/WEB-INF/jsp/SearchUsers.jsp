@@ -115,7 +115,7 @@
 						</h6>
 						<h6>Category: ${partner.category.category }</h6>
 					</div>
-					<div class="comment-content"> ${fn:substring(str,0,187)} </div>
+					<div class="comment-content"> ${fn:substring(str,0,185)}....</div>
 				</div>
 			</div>
 

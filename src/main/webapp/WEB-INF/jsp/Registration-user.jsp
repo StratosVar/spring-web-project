@@ -42,7 +42,7 @@ span.req {
 
             <div class="form-group">
                 <label for="lastname"><span class="req">* </span> Last name: </label> 
-                    <input class="form-control" type="text" name="lastname" id = "txt"  placeholder="hyphen or single quote OK" required />  
+                    <input class="form-control" type="text" name="lastname" id = "txt"   required />  
                         <div id="errLast"></div>
             </div>
 

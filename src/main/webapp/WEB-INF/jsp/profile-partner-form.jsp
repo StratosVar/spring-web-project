@@ -28,43 +28,49 @@
 
 			</div>
 			<div class="col-sm-5">
-				<form:form action="saveUser" modelAttribute="user" method="POST">
+				<form:form action="saveUser" modelAttribute="partner" method="POST">
 					<table class="property_input">
-						<col width="130">
+						<col width="150">
 						<tr>
 
 							<form:hidden path="id" />
 
-
-							<td><div class="form-group"><label for="firstName">First Name:</label></div></td>
-							<td><form:input type="text" path="firstName" class="form-control"/></td>
+							<td><div class="property_input">First Name:</div></td>
+							<td><form:input type="text" path="firstName" /></td>
 						</tr>
 
 						<tr>
-							<td><div class="form-group"><label for="firstName">Last Name:</label></div></td>
-							<td><form:input type="text" path="lastName" class="form-control"/></td>
+							<td><div class="property_input">Last Name:</div></td>
+							<td><form:input type="text" path="lastName" /></td>
 						</tr>
 
 						<tr>
-							<td><div class="form-group"><label for="firstName">Username:</label></div></td>
-							<td><form:input type="text" path="username" class="form-control"/></td>
+							<td><div class="property_input">Username:</div></td>
+							<td><form:input type="text" path="username" /></td>
 						</tr>
 
 						
 						<tr>
-							<td><div class="form-group"><label for="firstName">Email:</label></div></td>
-							<td><form:input type="email" path="email" class="form-control"/></td>
+							<td><div class="property_input">Email:</div></td>
+							<td><form:input type="email" path="email" /></td>
 						</tr>
 
 						<tr>
-							<td><div class="form-group"><label for="firstName">Password:</label></div></td>
-							<td><form:input type="text" path="password" class="form-control"/></td>
+							<td><div class="property_input">Bio:</div></td>
+							<td><form:textarea type="textarea" rows="5" cols="18" path="description" /></td>
 						</tr>
+
+						<tr>
+							<td><div class="property_input">Category:</div></td>
+							<td><form:input type="text" path="category" disabled /></td>
+						</tr>
+
+						
 
 						
 						<tr>
 							<td></td>
-							<td><input class="btn btn-primary" type="submit" value="Update"></td>
+							<td><input class="submit" type="submit" value="Update"></td>
 						</tr>
 					</table>
 				</form:form>

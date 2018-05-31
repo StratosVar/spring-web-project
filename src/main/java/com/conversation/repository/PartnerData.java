@@ -30,6 +30,10 @@ public interface PartnerData extends PagingAndSortingRepository<Partner, Integer
 	
 
 	
+//	@Query("SELECT COUNT(u) FROM User u WHERE u.name=:name")
+//    Long countMethod(@Param("name") String name);
+
+	
 //	@Query("SELECT AVG(u.age) from User u")
 //    int getAverageAge();
 // 

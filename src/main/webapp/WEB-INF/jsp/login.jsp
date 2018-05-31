@@ -16,15 +16,16 @@
 	<div class="st">
 
 		<div class="container well" align="center">
+				<c:if test="${login eq true}"> 		
+				<h6>You have already logged in, but you must login again for security purposes</h6>
+				</c:if>
 			<div class="row">
 				<div class="col-sm-4"></div>
 				<div class="col-sm-4">
 					<h2>Login</h2>
 					<form class="form-inline" action="validation" method="post">
 						<div class="form-group">
-							<label for="email">Usename:</label> <input type="username"
-								class="form-control" id="username" placeholder="Enter username"
-								name="username" required>
+							<label for="email">Usename:</label> <input type="username"	class="form-control" id="username" placeholder="Enter username" name="username" required>
 						</div>
 						<br>
 						<div class="form-group">
@@ -44,6 +45,9 @@
 		<div>
 			<a href="">Forgot your password?</a><br>
 		</div>
+		<c:if test="${errorUsername == true}"> 		
+		<h6>That username is already taken</h6>
+		</c:if>	
 		<c:if test="${usernameError == true}"> 		
 		<h6>That username does not exist</h6>
 		</c:if>
