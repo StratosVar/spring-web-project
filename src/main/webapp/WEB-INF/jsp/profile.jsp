@@ -34,6 +34,7 @@
 						<tr>
 
 							<form:hidden path="id" />
+							<form:hidden path="role" />
 
 
 							<td><div class="form-group"><label for="firstName">First Name:</label></div></td>

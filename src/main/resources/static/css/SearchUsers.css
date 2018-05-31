@@ -39,10 +39,6 @@
         z-index: 3;   
     }
 /**
- * Oscuro: #283035
- * Azul: #03658c
- * Detalle: #c7cacb
- * Fondo: #dee1e3
  ----------------------------------*/
  * {
      margin: 0;
@@ -150,8 +146,10 @@ ul {
  ---------------------------*/
 .comment-avatar {
 	width: inherit;
-	height: auto;
-	background: #FCFCFC;
+	height: 100%;
+	margin-right:6px;
+	margint-top:5px;
+	/* background: #FCFCFC;
 	float: left;
     border: 3px solid #FFF; 
 	-webkit-border-radius: 4px;
@@ -159,7 +157,7 @@ ul {
  	border-radius: 4px;
 	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 	-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-	box-shadow: 0 1px 2px rgba(0,0,0,0.2); 
+	box-shadow: 0 1px 2px rgba(0,0,0,0.2);  */
 	
 }
 

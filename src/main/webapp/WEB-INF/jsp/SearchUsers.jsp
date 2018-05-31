@@ -1,5 +1,6 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <c:import url="header.jsp"></c:import>  
 
 <div class="container">
@@ -18,7 +19,7 @@
 	</div>
 
 
-
+<a href="1_.txt" download>Click here</a>
 
 
 	<section class="containerUsers jumbotron">
@@ -103,8 +104,9 @@
 					<img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt="">
 					
 					<!-- BUTTONS HERE -->
-					<button type="button" class="btn btn-default btn-xs center-block"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> ${partner.totalPoints}</button>
-					<a href="#" class="btn btn-info center-block" role="button">Link Button</a>
+					<button type="button" class="btn btn-default btn-xs center-block"><span class="glyphicon glyphicon-star" aria-hidden="true"></span><fmt:formatNumber type = "number" 
+         maxFractionDigits = "2" value = "${partner.totalPoints}" /> </button>
+					<a href="#" class="btn btn-info center-block btn-xs" role="button">Profile</a>
 
 				</div>
 				<!-- Contenedor del Comentario -->
