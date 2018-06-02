@@ -49,7 +49,7 @@ public class Message {
 	private Date dateTime;
 	
 	@Column(name = "unread")
-	private boolean unread;
+	private boolean unread=true;
 	
 	@Column(name = "text")
 	private String text;

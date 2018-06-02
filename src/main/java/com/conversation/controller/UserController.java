@@ -44,7 +44,7 @@ public class UserController {
 		User u = ud.findByUsername(username);
 		
 		model.addAttribute("user",u);
-		return "profile";
+		return "Profile";
 		
 	}
 

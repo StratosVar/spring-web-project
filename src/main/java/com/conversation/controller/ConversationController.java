@@ -44,13 +44,18 @@ public class ConversationController {
 	@GetMapping("/conversations")
 	public String loadConversations(Model model, HttpSession session) {
 		
+		List<Integer> unreadlist=new ArrayList<Integer>();
 		
 		
+		int userid = (int) session.getAttribute("id");
+		List<Conversation> conversations = convService.getConversationsByUserID(userid);
 		
-		int id = (int) session.getAttribute("id");
-		List<Conversation> conversations = convService.getConversationsByUserID(id);
-		
-		
+		for(Conversation c:conversations) {
+			unreadlist.add(md.CountByConversationIdAndReceiverIdAndUnread(c.getId(), userid));
+			System.out.println(c.getId());
+			System.out.println(md.CountByConversationIdAndReceiverIdAndUnread(c.getId(), userid));
+		}
+		model.addAttribute("unreadlist",unreadlist);
 		model.addAttribute("conversations", conversations);
 		
 		return "conversations";
@@ -58,15 +63,15 @@ public class ConversationController {
 		
 	@GetMapping("/showConversation")
 	public String showConversation(@RequestParam(value="conversationId",required=false) Integer conversationId,Model model, HttpSession session) {
-		
+		int userid=(int) session.getAttribute("id");
 		
 		Optional<Conversation> conversation=convData.findById(conversationId);
 		try {
-		int id=(int) session.getAttribute("id");
+		
 		
 		if(session.getAttribute("id")==null) {
 			return "login";
-		}else if(!(conversation.get().getCreator().getId()==id || conversation.get().getInterlocutor().getId()==id )){
+		}else if(!(conversation.get().getCreator().getId()==userid || conversation.get().getInterlocutor().getId()==userid )){
 			return "login";
 		}
 		}catch (NullPointerException | NoSuchElementException ex ) {
@@ -74,6 +79,16 @@ public class ConversationController {
 			return "login";
 		}
 		List<Message> messages = convData.findById(conversationId).get().getMessages();
+		
+		//Get only the unread messages of this specific conversation 
+		List<Message> unreadlist=md.findAllByConversationIdAndReceiverId(conversationId, userid);
+		//Make   flag unread to read
+		for(Message m:unreadlist) {
+			m.setUnread(false);
+			md.save(m);
+		}
+		
+		
 		
 		model.addAttribute("list", messages);	
 		model.addAttribute("conversationId",conversationId);

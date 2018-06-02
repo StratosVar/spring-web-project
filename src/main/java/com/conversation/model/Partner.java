@@ -26,7 +26,7 @@ public class Partner extends User {
 	
 	@OneToOne
 	@JoinColumn(name="category_id")
-	private Category Category;
+	private Category category;
 	
 	@Column(name = "description")
 	private String description;
@@ -35,14 +35,14 @@ public class Partner extends User {
 	private List<Review> reviews=new ArrayList<Review>();
 	
 	@Column(name= "total_points")
-	private double totalPoints;
+	private double totalpoints;
 
 	public Category getCategory() {
-		return Category;
+		return category;
 	}
 
 	public void setCategory(Category category) {
-		Category = category;
+		this.category = category;
 	}
 
 	public String getDescription() {
@@ -62,16 +62,16 @@ public class Partner extends User {
 	}
 	
 	public double getTotalPoints() {
-		return totalPoints;
+		return totalpoints;
 	}
 
 	public void setTotalPoints(double totalPoints) {
-		this.totalPoints = totalPoints;
+		this.totalpoints = totalPoints;
 	}
 
 	@Override
 	public String toString() {
-		return "Partner [Category=" + Category + ", description=" + description + ", reviews=" + reviews + "]";
+		return "Partner [Category=" + category + ", description=" + description + ", reviews=" + reviews + "]";
 	}
 	
 	

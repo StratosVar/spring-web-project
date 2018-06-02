@@ -3,6 +3,7 @@ package com.conversation.repository;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -14,7 +15,10 @@ import com.conversation.model.User;
 
 public interface PartnerData extends PagingAndSortingRepository<Partner, Integer>  {
 	
-	List<Partner> findAll();
+//	List<Partner> findAll();
+	
+	@Override
+	Page<Partner> findAll();
 	
 	Optional<Partner> findById(int id);
 	
@@ -28,8 +32,21 @@ public interface PartnerData extends PagingAndSortingRepository<Partner, Integer
 			+ " UNION SELECT partner.description, partner.user_id,partner.category_id FROM partner WHERE partner.description LIKE %:keyword% ",  nativeQuery=true )
 	List<Partner> findAllByCategoryIdOrDescriptionContaining(@Param("id") int id,@Param("keyword") String keyword, Pageable pageable);
 	
-
 	
+	//for pagination
+	Page<Partner> findAllByCategoryIdNotOrDescriptionContainingOrTotalpointsGreaterThanEqual(int cat,String desc,double points, Pageable pageable);
+
+	Page<Partner> findAllByDescriptionContainingAndCategoryIdAndTotalpointsGreaterThanEqual(String desc,int cat,double points, Pageable pageable);
+	
+	Page<Partner> findAllByCategoryIdAndTotalpointsGreaterThanEqual(int id,double points,Pageable pageable);
+	
+	Page<Partner> findAllByCategoryIdAndDescriptionContaining(int id,String keywork,Pageable pageable);
+	
+	Page<Partner> findAllByCategoryId(int id ,Pageable pageable);
+	
+	Page<Partner> findAllByTotalpointsGreaterThanEqual(double points ,Pageable pageable);
+	
+
 //	@Query("SELECT COUNT(u) FROM User u WHERE u.name=:name")
 //    Long countMethod(@Param("name") String name);
 

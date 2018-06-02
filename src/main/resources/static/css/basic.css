@@ -99,8 +99,7 @@ footer li img {
 
 
 
-/*button for top footer
-*/
+/*button for top footer*/
 #myBtn {
   display: none;
   position: fixed;
@@ -118,8 +117,7 @@ footer li img {
 }
 
 
-/*button for top footer
-*/
+/*button for top footer*/
 #myBtn:hover {
   background-color: #555;
 }

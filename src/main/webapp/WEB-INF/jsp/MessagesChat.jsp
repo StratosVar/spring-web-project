@@ -36,16 +36,7 @@
 							<small>05:25 am</small>
 						</div>
 					</li>
-					<li class="msg-right">
-						<div class="msg-left-sub">
-							<img src="image/man04.png">
-							<div class="msg-desc">Lorem ipsum dolor sit amet,
-								consectetur adipisicing elit, sed do eiusmod tempor incididunt
-								ut labore et dolore magna aliqua.</div>
-							<small>05:25 am</small>
-						</div>
-					</li>
-					
+				
 
 
 
@@ -57,7 +48,7 @@
 						<c:if test="${message.sender.username == sessionScope.username}">
 							<li class="msg-right">
 								<div class="msg-left-sub">
-									<img class="img-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEPQDZ4QSXjrXEAaHaRDTjX_4_Lfha2QiYM30-mD9gUTErZL4f">
+									<img class="img-circle" src="${pageContext.request.contextPath}/profile_images/${sessionScope.id}.jpg">
 									<div class="msg-desc">${message.text}</div>
 									<small><fmt:formatDate pattern="dd-MM-yyyy hh:mm:ss a" value="${message.dateTime}" /></small>
 								</div>
@@ -68,7 +59,7 @@
 
 							<li class="msg-left">
 								<div class="msg-left-sub">
-									<img src="image/man03.png">
+									<img src="${pageContext.request.contextPath}/profile_images/${sessionScope.id}.jpg">
 									<div class="msg-desc">${message.text}</div>
 									<small>${message.dateTime}</small>
 								</div>

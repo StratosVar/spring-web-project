@@ -1,6 +1,7 @@
 package com.conversation.controller;
 
 import java.io.File;
+import java.net.URL;
 
 import javax.servlet.http.HttpSession;
 
@@ -97,7 +98,12 @@ public class HomeController {
 	}
 	
 	
-	
+	@RequestMapping("/home")
+		public String home() {
+		URL url = this.getClass().getClassLoader().getResource("static");
+		System.out.println(url);
+		return "home";
+	}
 
 	
 	

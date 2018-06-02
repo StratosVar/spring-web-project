@@ -68,9 +68,9 @@
 							<div class="col-sm-6">
 								<div align="center">
 									<img alt="User Pic" class="img-circle img-responsive"
-										id="profile-image1"
-										src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg">
-									</img>
+									
+										src="${pageContext.request.contextPath}/profile_images/${user.id}.jpg" id="profile-image1" class="img-circle img-responsive" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/defaultprofile.png';">
+									
 								</div>
 							
 							</div>

@@ -51,3 +51,6 @@ function Validate(txt) {
     txt.value = txt.value.replace(/[^a-zA-Z-'\n\r.]+/g, '');
 }
 
+
+
+

@@ -1,10 +1,6 @@
 package com.conversation.controller;
 
-import java.util.Iterator;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
-import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,13 +8,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.conversation.model.Conversation;
-import com.conversation.model.Message;
 import com.conversation.model.Partner;
-import com.conversation.model.Review;
 import com.conversation.repository.ConversationData;
 import com.conversation.repository.PartnerData;
 
@@ -35,39 +27,59 @@ public class FindPartnerController {
 	
 	@GetMapping("/users1")
 	public String findPartner(Pageable pageable,Model model) {
-		pd.findAll();
+		//pd.findAll();
 		Page<Partner> page=pd.findAll(pageable);
-		model.addAttribute("list",page.getContent());
+		System.out.println(page.getNumberOfElements());
+		System.out.println(page.getTotalPages());
+		model.addAttribute("list",page.getContent());	
+		model.addAttribute("totalpages", page.getTotalPages());
+		model.addAttribute("totalresults", page.getTotalElements());
 		return "SearchUsers";
 	}
 	
 	@GetMapping("/usersResults")
-	public String findPartnerResults(@RequestParam(name = "star", defaultValue = "1") Double star,
-			@RequestParam(name = "category", required = false, defaultValue = "0") Integer id,
+	public String findPartnerResults(@RequestParam(name = "star", defaultValue = "0") Double star,
+			@RequestParam(name = "category", defaultValue = "0",required = false) Integer id,
 			@RequestParam(name = "keyword", defaultValue = "NOVALUE") String keyword, Pageable pageable, Model model) {
-		pd.findAll();//need this because of silly bug
+		//pd.findAll();//need this because of silly bug fr native query
 		
-		
+		Page<Partner> list=pd.findAll(pageable);
 		try {
-		List<Partner> list=pd.findAllByCategoryIdOrDescriptionContaining(id, keyword,pageable);
-		
-		Iterator<Partner> ip = list.iterator();
-		while (ip.hasNext()) {
-			Partner p=ip.next();
-			List<Review> reviewlist = p.getReviews();
-			System.out.println(reviewlist.size());
-			//double d=(double)reviewlist.size();
 			System.out.println(star);
-			System.out.println(p.getTotalPoints());
-			if(p.getTotalPoints() < star) {
-				ip.remove();
+			System.out.println(keyword);
+			System.out.println(id);
+			System.out.println(pageable.toString());
+
+			if (id != 0 && star != 0 && !keyword.equals("NOVALUE")) {
+				list = pd.findAllByDescriptionContainingAndCategoryIdAndTotalpointsGreaterThanEqual(keyword, id, star,
+						pageable);
+				System.out.println("First query");
+
+			} else if (id != 0 && star != 0 && keyword.equals("NOVALUE")) {
+				list = pd.findAllByCategoryIdAndTotalpointsGreaterThanEqual(id, star, pageable);
+				System.out.println("Second query");
+			} else if (id != 0 && star == 0 && !keyword.equals("NOVALUE")) {
+				list = pd.findAllByCategoryIdAndDescriptionContaining(id, keyword, pageable);
+				System.out.println("Third query");
+			} else if (id != 0 && star == 0 && keyword.equals("NOVALUE")) {
+				list = pd.findAllByCategoryId(id, pageable);
+				System.out.println("Fourth query");
+			} else if (id == 0 && star != 0 && keyword.equals("NOVALUE")) {
+				list = pd.findAllByTotalpointsGreaterThanEqual(star, pageable);
+				System.out.println("Fifth query");
+			} else {
+				list = pd.findAllByCategoryIdNotOrDescriptionContainingOrTotalpointsGreaterThanEqual(id, keyword,
+						star, pageable);
+				System.out.println("Sixth query");
 			}
-		} // end while
-		
-		System.out.println(list.size());
+
+		System.out.println(list.getSize()); //was .size before pagination
 															
-		model.addAttribute("list", list);
-		if(list.size()==0) {
+		model.addAttribute("list", list.getContent());
+		model.addAttribute("totalpages", list.getTotalPages());
+		model.addAttribute("lastpage", list.getTotalPages());
+		model.addAttribute("totalresults", list.getTotalElements());
+		if(list.getSize()==0) { //was .size before pagination
 			model.addAttribute("error", true);
 		}
 		}catch (NullPointerException e) {
