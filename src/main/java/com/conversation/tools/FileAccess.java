@@ -37,7 +37,7 @@ public class FileAccess {
 			BufferedWriter bw = new BufferedWriter(fw);
 			
 			@SuppressWarnings("static-access")
-			String message = m.toString().format("Sender:%s %s Receiver:%s %s Date:%s \nMessage:%s",
+			String message = m.toString().format("Sender:%10s %10s Receiver:%10s %10s Date:%s \nMessage:%s",
 					m.getSender().getFirstName(),m.getSender().getLastName(),m.getReceiver().getFirstName(), m.getReceiver().getLastName(), m.getDateTime(), m.getText());
 			bw.write(message);
 			bw.newLine();
