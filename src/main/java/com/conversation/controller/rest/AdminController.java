@@ -29,7 +29,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.conversation.model.Message;
 import com.conversation.model.Partner;
 import com.conversation.model.User;
-import com.conversation.model.rest.MessageObject;
+import com.conversation.model.rest.MessageRest;
+import com.conversation.model.rest.UserRest;
 import com.conversation.repository.MessageData;
 import com.conversation.repository.PartnerData;
 import com.conversation.repository.UserData;
@@ -48,14 +49,14 @@ public class AdminController {
 	PartnerData pd;
 	
 	
-	@ResponseBody
+	
 	@RequestMapping(value = "/foos1", method = RequestMethod.GET)
 	public Optional<Message> findAll(@RequestParam(value = "id", defaultValue = "0") int id) {
 			return md.findById(id);
 			
 	}
 	
-	@ResponseBody
+	
 	@RequestMapping(value = "/foos", method = RequestMethod.GET)
 	public List<Message> findAll() {
 		List<Message> list= md.findAll();
@@ -65,16 +66,16 @@ public class AdminController {
 		return list;
 	}
 	
+
 	
-	@ResponseBody
-	@RequestMapping(value = "/foos123", method = RequestMethod.GET)
-	public List<MessageObject> findAlla(HttpSession session) {
+	@RequestMapping(value = "/foos123", method = RequestMethod.GET,headers="Accept=application/json")
+	public List<MessageRest> findAlla(HttpSession session) {
 		System.out.println(session.getCreationTime());
-		List<MessageObject> m=new ArrayList<MessageObject>();
+		List<MessageRest> m=new ArrayList<MessageRest>();
 		List<Message> l=md.findAll();
 		
 		for(Message msg:l) {
-			MessageObject msgo=new MessageObject();
+			MessageRest msgo=new MessageRest();
 			msgo.setId(msg.getId());
 			msgo.setReceiver(msg.getReceiver().getUsername());
 			msgo.setSender(msg.getSender().getUsername());
@@ -102,10 +103,23 @@ public class AdminController {
 	}
 	
 	
-	@RequestMapping("/users")
-	public @ResponseBody List<Message> user(@RequestParam(value = "name", defaultValue = "World") String name) {
-		List<Message> list = md.findAll();
-		return list;
+	@RequestMapping("/users123")
+	public @ResponseBody 
+	List<UserRest> user(@RequestParam(value = "name", defaultValue = "World") String name) {
+		List<UserRest> restlist=new ArrayList();
+		
+		
+		Iterable<User> list=ud.findAll();
+		for(User u:list) {
+			UserRest user=new UserRest();
+			user.setId(u.getId());
+			user.setUsername(u.getUsername());
+			user.setFirstName(u.getFirstName());
+			user.setLastName(u.getLastName());
+			restlist.add(user);
+		}
+		
+		return restlist;
 	}
 
 	
@@ -131,16 +145,14 @@ public class AdminController {
 		return "/thanasis/admin";
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "/foos", method = RequestMethod.POST)
-	public String saveMessage() {
-		return "asdF";
-	}
 	
 	
 	@RequestMapping(value="/add", method = RequestMethod.POST, headers="Accept=application/json")
 	 public ResponseEntity<User> add(@RequestBody User user){
-		System.out.println("asdad");
+	
+		
+	  System.out.println("pernaei");
+		
 	  ud.save(user);
 	  
 	  HttpHeaders headers = new HttpHeaders();
@@ -166,31 +178,28 @@ public class AdminController {
 	
 	
 	
-//
-//	@RequestMapping(value = "/update-message/{id}", method = RequestMethod.PUT)
-//	public ResponseEntity<Void> updateCar(@PathVariable("id") int id, @RequestBody Message message) {
-//
-//		try {
-//			md.save(message);
-//			return ResponseEntity.status(HttpStatus.OK).build();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-//		}
-//	}
+
+	@RequestMapping(value = "/update-message/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> updateCar(@PathVariable("id") int id, @RequestBody Message message) {
+
+		try {
+			md.save(message);
+			return ResponseEntity.status(HttpStatus.OK).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
+	}
 
 
 
+	@RequestMapping(value = "/json", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<List<Message>>bar() {
 
+		List<Message> list = md.findAll();
+		final HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+		return new ResponseEntity<List<Message>>(list, httpHeaders, HttpStatus.OK);
 
-//	@RequestMapping(value = "/json", method = RequestMethod.GET, produces = "application/json")
-//	public ResponseEntity<String> bar() {
-//
-//		List<Message> list = md.findAll();
-//
-//		final HttpHeaders httpHeaders = new HttpHeaders();
-//		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-//		return new ResponseEntity<String>(list.toString(), httpHeaders, HttpStatus.OK);
-//
-//	}
+	}
 }

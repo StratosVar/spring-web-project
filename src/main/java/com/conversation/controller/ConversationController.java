@@ -55,6 +55,14 @@ public class ConversationController {
 			System.out.println(c.getId());
 			System.out.println(md.CountByConversationIdAndReceiverIdAndUnread(c.getId(), userid));
 		}
+		
+		//With stream
+//		conversations.stream()
+//				.forEach(c->{
+//				unreadlist.add(md.CountByConversationIdAndReceiverIdAndUnread(c.getId(), userid));
+//				});
+		
+		
 		model.addAttribute("unreadlist",unreadlist);
 		model.addAttribute("conversations", conversations);
 		
@@ -82,11 +90,22 @@ public class ConversationController {
 		
 		//Get only the unread messages of this specific conversation 
 		List<Message> unreadlist=md.findAllByConversationIdAndReceiverId(conversationId, userid);
+		
+		
+		
+				
+//		for(Message m:unreadlist) {
+//			m.setUnread(false);
+//			md.save(m);
+//		}
+		
 		//Make   flag unread to read
-		for(Message m:unreadlist) {
-			m.setUnread(false);
-			md.save(m);
-		}
+		//with stream
+		unreadlist.stream()
+				.forEach(m->{
+					m.setUnread(false);
+					md.save(m); 
+					});
 		
 		
 		
@@ -95,7 +114,7 @@ public class ConversationController {
 		model.addAttribute("conversation",conversation.get());
 		model.addAttribute("totalMessages",conversation.get().getMessages().size());
 	
-		return "MessagesChat";
+		return "messages-chat";
 	}
 	
 	
@@ -121,7 +140,7 @@ public class ConversationController {
 		model.addAttribute("list", messages);	
 		model.addAttribute("conversationId",conversationId);
 	
-		return "MessagesDownload";
+		return "messages-download";
 	}
 	
 	
