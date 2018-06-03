@@ -96,29 +96,30 @@
 	<c:forEach var="partner" items="${list}">
 	<c:set var="str" value="${partner.description}" />
 	
-	<figure class="col-sm-6">
+	<figure class="col-lg-6">
 
 		<div class="flex-container">		
 			<div class="comment-avatar">
-				<img src="${pageContext.request.contextPath}/profile_images/${partner.id}.jpg" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/defaultprofile.png';">
+				<img src="${pageContext.request.contextPath}${user.profileimage}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/defaultprofile.png';">
 				
 				<!-- BUTTONS HERE -->
 				<button type="button" class="btn btn-default btn-xs center-block"><span class="glyphicon glyphicon-star" aria-hidden="true"></span><fmt:formatNumber type = "number" 
 					maxFractionDigits = "2" value = "${partner.totalPoints}" /> </button>
-					<a href="/partner/profile/${partner.id}"" class="btn btn-info center-block btn-xs" role="button">Profile</a>
+					<a href="/partner/profile/${partner.id}" class="btn btn-info center-block btn-xs" role="button">Profile</a>
 
 				</div>
 				<!-- Contenedor del Comentario -->
-				<div class="comment-box">
+				<div class="comment-box"  style="margin-top: 10px;">
 					<div class="comment-head">
 						<h5 class="comment-name">
 							<a href="/partner/profile/${partner.id}">${partner.firstName} ${partner.lastName}</a>
-						</h6>
+							<br>
+							Category: ${partner.category.category }
+						</h5>
 						
 						
-						<h6 style="float:right;">Category: ${partner.category.category }</h6>
 					</div>
-					<div class="comment-content"> ${fn:substring(str,0,185)}....</div>
+					<div class="comment-content"> ${fn:substring(str,0,189)}....</div>
 				</div>
 			</div>
 

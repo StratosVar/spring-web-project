@@ -6,7 +6,7 @@
     </div>
     <div class="col-md-6">
         <!-- startpoint 1 -->
-        <form accept-charset="ISO-8859-1" action="/partner/registration/submit" id="fileForm" method="post" role="form">
+        <form accept-charset="ISO-8859-1" action="/registration/submit" id="fileForm" method="post" role="form">
             <fieldset>
                 <!-- startpoint 2 -->
                 <div class="container jumbotron" style="width:600px;">
@@ -14,22 +14,14 @@
                         <br>
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <label>
-                                        Type
-                                    </label>
-                                    :
-                                    <br>
-                                    </br>
+                                    <label> Type</label> :
+                                    <br>                                 
                                 </div>
                                 <div class="col-sm-3">
-                                    <input checked="checked" class="hideable" name="type" required="" type="radio" value="user">
-                                        Simple User
-                                    </input>
+                                    <input checked="checked" class="hideable" name="type" required="" type="radio" value="user">Simple User</input>
                                 </div>
                                 <div class="col-sm-3">
-                                    <input class="showable" name="type" required="" type="radio" value="partner">
-                                        Pro
-                                    </input>
+                                    <input class="showable" name="type" required="" type="radio" value="partner">Pro</input>
                                 </div>
                                 <div class="col-sm-4">
                                 </div>
@@ -38,7 +30,7 @@
                     </div>
                     <div class="form-group kati" style="display: none">
                         <label class="col-md-4 control-label" for="where">
-                            Field of expertise
+                           <span class="req">*</span> Category
                         </label>
                         <select class="form-control" id="where" name="category">
                             <option value="1">
@@ -51,18 +43,13 @@
                     </div>
                     <div class="form-group kati" style="display: none">
                         <label class="col-md-4 control-label" for="where">
-                            Biography
+                            <span class="req">*</span>Description
                         </label>
-                        <textarea class="form-control" cols="30" name="bio" rows="10" placeholder="Enter your bio here">
-                        </textarea>
+                        <textarea class="form-control" cols="30" name="description" rows="10" placeholder="Enter your bio here"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="firstname">
-                            <span class="req">
-                                *
-                            </span>
-                            First
-								name:
+                            <span class="req">* </span> Firstname:
                         </label>
                         <input class="form-control" id="txt" name="firstname" required type="text"/>
                         <div id="errFirst">
@@ -70,11 +57,7 @@
                     </div>
                     <div class="form-group">
                         <label for="lastname">
-                            <span class="req">
-                                *
-                            </span>
-                            Last
-								name:
+                            <span class="req">*</span>Lastname:
                         </label>
                         <input class="form-control" id="txt" name="lastname"  required type="text"/>
                         <div id="errLast">
@@ -82,37 +65,26 @@
                     </div>
                     <div class="form-group">
                         <label for="email">
-                            <span class="req">
-                                *
-                            </span>
-                            Email Address:
+                            <span class="req">*</span>Email Address:
                         </label>
-                        <input class="form-control" id="email" name="email" onchange="email_validate(this.value);" required type="text"/>
+                        <input class="form-control" id="email" name="email" onchange="email_validate(this.value);" required type="email"/>
                         <div class="status" id="status">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="username">
-                            <span class="req">
-                                *
-                            </span>Username:</label>
+                            <span class="req">*</span>Username:</label>
                         <input class="form-control" id="txt" name="username"  required="" type="text"/>
                     </div>
                   
                     <div class="form-group">
                         <label for="password">
-                            <span class="req">
-                                *
-                            </span>
-                            Password:
+                            <span class="req">*</span>Password:
                         </label>
                         <input class="form-control inputpass" id="password1" maxlength="16" minlength="4" name="password" onkeyup="checkPassword(); return false;" required="" type="password"/>
                         <label for="password">
-                            <span class="req">
-                                *
-                            </span>
-                            Password
-							Confirm:
+                            <span class="req">*
+                            </span>Password Confirm:
                         </label>
                         <input class="form-control inputpass" id="password2" maxlength="16" minlength="4" onkeyup="checkPassword(); return false;" required="" type="password"/>
                         <span class="passwordConfirm" id="passwordConfirm">
@@ -121,17 +93,10 @@
                     <div class="form-group">
                         <input id="field_terms" name="terms" required type="checkbox">
                             <label for="terms">
-                                I agree
-								with the
-                                <a href="terms" title="Terms and conditions">
-                                    terms
-									and conditions
-                                </a>
-                                for Registration.
+                                I agree with the
+                                <a href="terms" title="Terms and conditions">terms and conditions </a>for Registration.
                             </label>
-                            <span class="req">
-                                *
-                            </span>
+                            <span class="req"> *</span>
                         </input>
                     </div>
                     <div class="form-group">

@@ -6,15 +6,21 @@ import java.net.URL;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.conversation.model.Partner;
 import com.conversation.model.User;
+import com.conversation.repository.CategoryData;
+import com.conversation.repository.PartnerData;
 import com.conversation.repository.UserData;
 import com.conversation.service.UserService;
 
@@ -23,14 +29,19 @@ import com.conversation.service.UserService;
 public class HomeController {
 	
 	
-	
 	@Autowired
 	UserService userService;
 	
 	@Autowired
 	UserData userData;
 
+	@Autowired
+	PartnerData pd;
 	
+	@Autowired
+	CategoryData cd;
+	
+
 	@RequestMapping("/login")
 	public String login(Model model,HttpSession session) {
 		
@@ -77,24 +88,68 @@ public class HomeController {
 
 	}
 	
-	//old way of validation without encryption -Stam
-	@PostMapping("/userCheck")
-	public String logincheck(@RequestParam ("username") String username, @RequestParam("pwd") String password, HttpSession session,Model model) {
+
+	
+	@GetMapping("/registration")
+	public String profilePartners() {	
+		return "registration-partner";
+	}
+	
+	
+	@PostMapping("/registration/submit")
+	public String formsubmit(
+			@RequestParam("username")String username, 
+			@RequestParam("password")String password,
+			@RequestParam("email")String email,
+			@RequestParam("firstname")String firstName,
+			@RequestParam("type")String role,
+			@RequestParam("lastname")String lastName,
+			@RequestParam(value="category",required=false)Integer id,
+			@RequestParam(value="description",required=false)String description,
+			Pageable pageable,Model model,HttpSession session,RedirectAttributes rm) {
 		
-	
-		if (userService.loginUser(username, password)) {
-			session.setAttribute("id", userService.getUserId(username));
-			session.setAttribute("username", userData.findByUsername(username));
-			session.setAttribute("loggedin",true);
-			return "redirect:/messagesChat";
-			
-		}
-		else {
+		System.out.println(username);
+		System.out.println(email);
+		System.out.println(password);
+		System.out.println(firstName);
+		System.out.println(role);
 		
-		return "login";
+		
+		if(!userData.existsByUsername(username)) {
+		
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String hashedPassword = passwordEncoder.encode(password);
+		
+			if (role.equals("partner")) {
+				Partner p = new Partner();
+				p.setPassword(hashedPassword);
+				p.setRole(role);
+				p.setUsername(username);
+				p.setFirstName(firstName);
+				p.setLastName(lastName);
+				p.setEmail(email);
+				p.setCategory(cd.findById(id).get());
+				p.setDescription(description);
+				pd.save(p);
+				System.out.println("PARTNER CREATED");
+			} else if (role.equals("user")) {
+				User u = new User();
+				u.setPassword(hashedPassword);
+				u.setRole(role);
+				u.setUsername(username);
+				u.setFirstName(firstName);
+				u.setLastName(lastName);
+				u.setEmail(email);
+				userData.save(u);
+				System.out.println("USER CREATED");
+			} else {
+				model.addAttribute("error", true);
+			}
+		}else {
+			 rm.addFlashAttribute("errorUsername",true);
 		}
-	
-	
+		
+		return "redirect:/login";
 	}
 	
 	

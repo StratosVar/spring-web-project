@@ -6,7 +6,7 @@
  
 <section class="jumbotron">
 	<div class="container" id="conversationsTable">
-		<h3>Your Conversations</h3>
+		<h3>My Conversations</h3>
 		<table class="table-conversations table-condensed">
 			
 			<tr>
@@ -31,7 +31,7 @@
 									<c:param name="conversationId" value="${conversation.id}"/>	
 								</c:url>
 
-								<tr class='clickable-row' data-href='${startConversation}'>
+								<tr class='' data-href='${startConversation}'>
 									<td>${conversation.title}</td>
 									<td>${conversation.creator.username}</td>
 									<td>${conversation.interlocutor.username}</td>

@@ -77,17 +77,9 @@ public class MessageController {
 		
 		conversation.getMessages().add(message);
 		convService.saveConversation(conversation);
-		
-		
+			
 		List<Message> messages = conversation.getMessages();
 		
-		//for testing
-		for(Message m:messages) {
-			System.out.println(m.getId());
-			System.out.println(m.getReceiver());
-			System.out.println(m.getSender());
-		}
-	
 		model.addAttribute("list", messages);
 		model.addAttribute("conversationId", conversationId);
 		

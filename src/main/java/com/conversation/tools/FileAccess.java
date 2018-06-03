@@ -21,6 +21,7 @@ import java.io.FileWriter;
 public class FileAccess { 
 
 	
+	
 	public static void fileWriterAccess(Conversation c, Message m) {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date d=new Date();

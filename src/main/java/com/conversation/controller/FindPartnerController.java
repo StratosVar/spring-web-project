@@ -34,7 +34,7 @@ public class FindPartnerController {
 		model.addAttribute("list",page.getContent());	
 		model.addAttribute("totalpages", page.getTotalPages());
 		model.addAttribute("totalresults", page.getTotalElements());
-		return "SearchUsers";
+		return "search-users";
 	}
 	
 	@GetMapping("/usersResults")
@@ -85,7 +85,7 @@ public class FindPartnerController {
 		}catch (NullPointerException e) {
 			model.addAttribute("error", true);
 		}
-		return "SearchUsers";
+		return "search-users";
 	}
 	
 	

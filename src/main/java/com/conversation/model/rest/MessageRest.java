@@ -1,6 +1,6 @@
 package com.conversation.model.rest;
 
-public class MessageObject {
+public class MessageRest {
 	
 	
 	

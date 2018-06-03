@@ -33,7 +33,6 @@ public class User {
 	private String username;
 	
 	@NotNull
-   // @Min(3)
 	@Column(name = "password")
 	private String password;
 	
@@ -49,6 +48,8 @@ public class User {
 	@Column(name = "email")
 	private String email;
 	
+	@Column(name = "profile_image")
+	private String profileimage="/profile/images/defaultprofile.png";
 
 	public int getId() {
 		return id;
@@ -107,6 +108,15 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public String getProfileimage() {
+		return profileimage;
+	}
+
+	public void setProfileimage(String profileimage) {
+		this.profileimage = profileimage;
+	}
+	
 	
 	
 	

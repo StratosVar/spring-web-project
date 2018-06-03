@@ -25,12 +25,7 @@ public class UserServiceImp implements UserService {
 		return userRepository.getUsers();
 	}
 
-	@Override
-	@Transactional
-	public void saveUser(User user) {
-		
-		userRepository.saveUser(user);
-	}
+	
 
 	
 	
@@ -50,6 +45,12 @@ public class UserServiceImp implements UserService {
 	@Transactional
 	public User getUser(int id) {	
 		return userRepository.getUser(id);
+	}
+	
+	@Override
+	@Transactional
+	public void saveUser(User user) {	
+		userRepository.saveUser(user);
 	}
 	
 //	@Override

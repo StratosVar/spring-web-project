@@ -9,9 +9,9 @@
   <meta charset="utf-8"/>
 
   <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/basicStyle.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/basic-style.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/profile_style.css">
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/SearchUsers.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/search-users.css">
    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/chat.css">
 
   <script src="${pageContext.request.contextPath}/js/basic.js"></script>
@@ -72,7 +72,7 @@
           </c:if>
            <c:if test="${sessionScope.loggedin == null}" > 
             <a class="navbar-brand" href="${pageContext.request.contextPath}/login">login</a>
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/partner/registration">Register</a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/registration">Register</a>
           </c:if>
           <c:if test="${sessionScope.loggedin == true}" > 
             <a class="navbar-brand" href="${pageContext.request.contextPath}/logout">logout</a>

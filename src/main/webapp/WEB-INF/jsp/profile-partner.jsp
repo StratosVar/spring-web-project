@@ -69,7 +69,7 @@
 								<div align="center">
 									<img alt="User Pic" class="img-circle img-responsive"
 									
-										src="${pageContext.request.contextPath}/profile_images/${user.id}.jpg" id="profile-image1" class="img-circle img-responsive" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/defaultprofile.png';">
+										src="${pageContext.request.contextPath}${partner.profileimage}" id="profile-image1" class="img-circle img-responsive" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/defaultprofile.png';">
 									
 								</div>
 							

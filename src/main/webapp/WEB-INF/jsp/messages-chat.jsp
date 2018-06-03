@@ -15,10 +15,9 @@
 
 <div class="body-section col-md-10 jumbotron" style="width: 100%">
 	<div class="col-md-3">
-		<h4>Conversation Details</h4>
-		<h5>Started on:</h5>
-		<h5>Professional:${conversation.interlocutor.firstName} </h5>
-		<h5>Questioner:${conversation.creator.firstName}</h5>
+		<h4>Conversation Details</h4><br>
+		<h5>Professional:${conversation.interlocutor.firstName} ${conversation.interlocutor.lastName} </h5>
+		<h5>Questioner:${conversation.creator.firstName} ${conversation.creator.lastName}</h5>
 		<h5>Total Messages: ${totalMessages}</h5>
 	</div>
 	<div class="col-lg-8">
@@ -59,7 +58,7 @@
 
 							<li class="msg-left">
 								<div class="msg-left-sub">
-									<img src="${pageContext.request.contextPath}/profile_images/${sessionScope.id}.jpg">
+									<img class="img-circle" src="${pageContext.request.contextPath}/profile_images/${sessionScope.id}.jpg">
 									<div class="msg-desc">${message.text}</div>
 									<small>${message.dateTime}</small>
 								</div>
