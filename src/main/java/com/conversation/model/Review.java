@@ -39,12 +39,12 @@ public class Review {
 	
 
 	@OneToOne( cascade = CascadeType.ALL)
-	@JoinColumn(name="reviewer_id",nullable = false)
+	@JoinColumn(name="reviewer_id")
 	private User reviewer;
 
 	
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "partner_id")
 	private Partner partner;
 	

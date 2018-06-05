@@ -4,7 +4,11 @@
 <div class="container">
     <div class="col-md-3">
     </div>
+  
     <div class="col-md-6">
+      <c:if test="${errorUsername eq true}"> 		
+				<h6>That username already exists!</h6>
+				</c:if>
         <!-- startpoint 1 -->
         <form accept-charset="ISO-8859-1" action="/registration/submit" id="fileForm" method="post" role="form">
             <fieldset>
@@ -94,9 +98,8 @@
                         <input id="field_terms" name="terms" required type="checkbox">
                             <label for="terms">
                                 I agree with the
-                                <a href="terms" title="Terms and conditions">terms and conditions </a>for Registration.
+                                <a href="terms" title="Terms and conditions">terms and conditions </a>
                             </label>
-                            <span class="req"> *</span>
                         </input>
                     </div>
                     <div class="form-group">

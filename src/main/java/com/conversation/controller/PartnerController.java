@@ -77,7 +77,7 @@ public class PartnerController {
 	
 	@RequestMapping("/partner/profile/{id}")
 	public String profilePartner(@PathVariable(value="id")Integer id, Pageable pageable,Model model,HttpSession session) {
-
+		
 		if (session.getAttribute("loggedin") != null) {
 			System.out.println(id);
 			Optional<Partner> p = pd.findById(id);

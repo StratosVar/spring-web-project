@@ -4,26 +4,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.conversation.model.Message;
@@ -48,24 +44,7 @@ public class AdminController {
 	@Autowired
 	PartnerData pd;
 	
-	
-	
-	@RequestMapping(value = "/foos1", method = RequestMethod.GET)
-	public Optional<Message> findAll(@RequestParam(value = "id", defaultValue = "0") int id) {
-			return md.findById(id);
-			
-	}
-	
-	
-	@RequestMapping(value = "/foos", method = RequestMethod.GET)
-	public List<Message> findAll() {
-		List<Message> list= md.findAll();
-		for(Message l:list) {
-			l.setReceiver(null);
-		}
-		return list;
-	}
-	
+
 
 	
 	@RequestMapping(value = "/foos123", method = RequestMethod.GET,headers="Accept=application/json")
@@ -79,35 +58,29 @@ public class AdminController {
 			msgo.setId(msg.getId());
 			msgo.setReceiver(msg.getReceiver().getUsername());
 			msgo.setSender(msg.getSender().getUsername());
+			msgo.setText(msg.getText());
 			m.add(msgo);
 			
 		}
+		//with lamda
+//		l.forEach(message->{
+//			MessageRest msgo=new MessageRest();
+//			msgo.setId(message.getId());
+//			msgo.setReceiver(message.getReceiver().getUsername());
+//			msgo.setSender(message.getSender().getUsername());
+//			m.add(msgo);
+//		});
+		
 		return m;
 	}
 	
 	
 	
 	
-	@ResponseBody
-	@RequestMapping(value = "/foos2", method = RequestMethod.GET)
-	public List<Message> findAllPagination(Pageable pageable) {
-		Page<Message> pages=md.findAll(pageable);
-		return pages.getContent();
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/foos3", method = RequestMethod.GET)
-	public Page<Message> findAllPagination2(Pageable pageable) {
-		Page<Message> pages=md.findAll(pageable);
-		return pages;
-	}
-	
 	
 	@RequestMapping("/users123")
-	public @ResponseBody 
-	List<UserRest> user(@RequestParam(value = "name", defaultValue = "World") String name) {
-		List<UserRest> restlist=new ArrayList();
-		
+	public @ResponseBody List<UserRest> userlist() {
+		List<UserRest> restlist=new ArrayList<UserRest>();
 		
 		Iterable<User> list=ud.findAll();
 		for(User u:list) {
@@ -116,6 +89,15 @@ public class AdminController {
 			user.setUsername(u.getUsername());
 			user.setFirstName(u.getFirstName());
 			user.setLastName(u.getLastName());
+			user.setRole(u.getRole());
+			user.setEmail(u.getEmail());
+			
+			if(u.getIsadmin()==true) {
+				user.setIsadmin("true");
+			}else {
+				user.setIsadmin("false");
+			}
+			
 			restlist.add(user);
 		}
 		
@@ -132,64 +114,65 @@ public class AdminController {
 		String hashedPassword = passwordEncoder.encode(password);
 		System.out.println(hashedPassword);
 		
-		//User john=ud.findById(2);
-		//System.out.println(passwordEncoder.matches(password, john.getPassword()));
-		
-		
-		Partner p = new Partner();
-		p.setUsername("123sadas12323s");
-		p.setPassword("huhu");
-		pd.save(p);
-		
-		
+		//System.out.println(passwordEncoder.matches(password, john.getPassword()));		
 		return "/thanasis/admin";
 	}
 
 	
 	
 	@RequestMapping(value="/add", method = RequestMethod.POST, headers="Accept=application/json")
-	 public ResponseEntity<User> add(@RequestBody User user){
-	
-		
-	  System.out.println("pernaei");
-		
+	 public ResponseEntity<String> add(@RequestBody User user){
+			
 	  ud.save(user);
 	  
 	  HttpHeaders headers = new HttpHeaders();
-	
-	  return new ResponseEntity<User>(headers, HttpStatus.CREATED);
+	 System.out.println(headers);
+	  return new ResponseEntity<String>(headers, HttpStatus.CREATED);
 	 }
 	
-	
-	//gia na epistrefw custom json me polla dedomena
-	@ResponseBody
-	@RequestMapping(value="/asdf", method = RequestMethod.GET)
-	public  Map<String, Object> asd() {
-	Map<String, Object> test = new HashMap<String, Object>();
-	    Map<String, Boolean> custom = new HashMap<>();
-	    User user =new User();
-	    custom.put("hasVoted", true);
-	    custom.put("hasCommented", false);
-	    test.put("user", user);
-	    test.put("custom", custom);
-	    return test;
-	}
-	
-	
-	
-	
 
-	@RequestMapping(value = "/update-message/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> updateCar(@PathVariable("id") int id, @RequestBody Message message) {
-
+	
+	
+	@CrossOrigin
+	@RequestMapping(value = "/delete-user/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> deleteUser(@PathVariable("id") int id) {
+		User u=ud.findById(id);
 		try {
-			md.save(message);
-			return ResponseEntity.status(HttpStatus.OK).build();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			ud.delete(u);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		} catch (Exception ignore) {
+			ignore.getMessage();
+			return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	
+	@CrossOrigin
+	@RequestMapping(value = "/update-user", method = RequestMethod.POST)
+	public ResponseEntity<Void>updateUser(@RequestBody UserRest restUser) {
+		System.out.println(restUser);
+		User u=new User(restUser);
+		User udb=ud.findById(u.getId());
+		System.out.println(udb);
+		//u.setProfileimage();
+		u.setPassword(udb.getPassword());
+		if(restUser.getIsadmin().equals("true")) {
+			u.setIsadmin(true);
+		}else {
+			u.setIsadmin(false);
+		}
+
+		
+		try {
+			ud.save(u);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	
 
 
 

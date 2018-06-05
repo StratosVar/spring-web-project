@@ -31,7 +31,7 @@ public class Partner extends User {
 	@Column(name = "description")
 	private String description;
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy="partner")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy="partner",cascade=CascadeType.ALL)
 	private List<Review> reviews=new ArrayList<Review>();
 	
 	@Column(name= "total_points")

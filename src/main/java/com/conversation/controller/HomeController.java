@@ -46,8 +46,6 @@ public class HomeController {
 	public String login(Model model,HttpSession session) {
 		
 		
-		File directory = new File("conversation_logs"); //testing for images
-		System.out.println(directory.getPath());
 		if(session.getAttribute("loggedin")!=null) {
 			model.addAttribute("login",true);
 			session.invalidate();
@@ -58,9 +56,7 @@ public class HomeController {
 
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
-
 		session.invalidate();
-
 		return "redirect:/login";
 	}
 	
@@ -115,7 +111,7 @@ public class HomeController {
 		System.out.println(role);
 		
 		
-		if(!userData.existsByUsername(username)) {
+		if(!userData.existsByUsername(username) ) {
 		
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String hashedPassword = passwordEncoder.encode(password);
@@ -146,7 +142,8 @@ public class HomeController {
 				model.addAttribute("error", true);
 			}
 		}else {
-			 rm.addFlashAttribute("errorUsername",true);
+			
+			 return "redirect:/registration";
 		}
 		
 		return "redirect:/login";

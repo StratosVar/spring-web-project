@@ -12,6 +12,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.conversation.model.rest.UserRest;
+
 @Entity
 @Table(name = "user")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -20,6 +22,17 @@ public class User {
 
 	public User() {};
 	
+	public User(UserRest user) {
+		this.id = user.getId();
+		this.username = user.getUsername();
+		this.role = user.getRole();
+		this.firstName = user.getFirstName();
+		this.lastName = user.getLastName();
+		this.email = user.getEmail();
+		
+	}
+	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -47,6 +60,10 @@ public class User {
 	
 	@Column(name = "email")
 	private String email;
+	
+	
+	@Column(name = "is_admin", columnDefinition="BOOLEAN DEFAULT false")
+	private Boolean isadmin;
 	
 	@Column(name = "profile_image")
 	private String profileimage="/profile/images/defaultprofile.png";
@@ -115,6 +132,21 @@ public class User {
 
 	public void setProfileimage(String profileimage) {
 		this.profileimage = profileimage;
+	}
+
+	public Boolean getIsadmin() {
+		return isadmin;
+	}
+
+	public void setIsadmin(Boolean isadmin) {
+		this.isadmin = isadmin;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role
+				+ ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", isadmin=" + isadmin
+				+ "]";
 	}
 	
 	

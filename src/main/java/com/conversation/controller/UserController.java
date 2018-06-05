@@ -82,8 +82,6 @@ public class UserController {
 			ud.save(user);
 		}
 		
-	
-		
 		return "redirect:/logout";
 		
 	}

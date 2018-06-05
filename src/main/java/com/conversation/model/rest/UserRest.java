@@ -7,11 +7,17 @@ public class UserRest {
 	private int id;
 	private String username;
 	
-	//@JsonProperty("firstname")
+//	@JsonProperty("firstname")
 	private String firstName;
 	
-	//@JsonProperty("lastname")
+//	@JsonProperty("lastname")
 	private String lastName;
+	
+	private String role;
+	
+	private String email;
+	
+	private String isadmin;
 	
 	public int getId() {
 		return id;
@@ -37,5 +43,33 @@ public class UserRest {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	
+	public String getIsadmin() {
+		return isadmin;
+	}
+	public void setIsadmin(String isadmin) {
+		this.isadmin = isadmin;
+	}
+	
+	@Override
+	public String toString() {
+		return "UserRest [id=" + id + ", username=" + username + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", role=" + role + ", email=" + email + ", isadmin=" + isadmin + "]";
+	}
+	
+	
 	
 }

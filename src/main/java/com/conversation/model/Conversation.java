@@ -15,10 +15,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.OrderBy;
 import org.hibernate.annotations.SortNatural;
 
@@ -36,12 +38,14 @@ public class Conversation {
 	
 	@Column(name= "title")
 	private String title;
+
 	
-	@ManyToOne
+	@OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
 	@JoinColumn(name="creator_id")
 	private User creator;
 	
-	@ManyToOne
+	
+	@OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
 	@JoinColumn(name="interlocutor_id")
 	private User interlocutor;
 	
