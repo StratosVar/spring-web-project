@@ -31,7 +31,7 @@
 									<c:param name="conversationId" value="${conversation.id}"/>	
 								</c:url>
 
-								<tr class='' data-href='${startConversation}'>
+								<tr class='trow' data-href='${startConversation}'>
 									<td>${conversation.title}</td>
 									<td>${conversation.creator.username}</td>
 									<td>${conversation.interlocutor.username}</td>
@@ -44,16 +44,10 @@
 								</tr>
 
 							</c:forEach>
-			<tr class='clickable-row' data-href='https://www.w3schools.com/css/tryit.asp?filename=trycss_max-width'>
-			
-				<td>Kostas Ydraylikos</td>
-				<td>Kazanaki Skatenio</td>
-				<td>12:43 15/07/21</td>
-				<td>0</td>
-			</tr>
-
+	
 		</table>
 		
+<!-- 		
 		 <script>
 
 				jQuery(document).ready(function($) {
@@ -64,7 +58,8 @@
 
 		</script> 
 
-
+ -->
+ 
 	</div>
 
 

@@ -2,9 +2,11 @@ package com.conversation.controller;
 
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
+import org.dom4j.CDATA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.conversation.model.Category;
 import com.conversation.model.Partner;
 import com.conversation.model.User;
 import com.conversation.repository.CategoryData;
@@ -87,8 +90,13 @@ public class HomeController {
 
 	
 	@GetMapping("/registration")
-	public String profilePartners() {	
+	public String profilePartners(Model model) {
+		
+		ArrayList<Category> categories = cd.findAll();
+		model.addAttribute("categories",categories);
+		
 		return "registration-partner";
+		
 	}
 	
 	
