@@ -119,7 +119,10 @@ public class HomeController {
 		System.out.println(role);
 		
 		
-		if(!userData.existsByUsername(username) ) {
+		boolean usernameflag=userData.existsByUsername(username);
+		boolean emailflag=userData.existsByEmail(email);
+		
+		if(!usernameflag && !emailflag)  {
 		
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String hashedPassword = passwordEncoder.encode(password);
@@ -147,13 +150,19 @@ public class HomeController {
 				userData.save(u);
 				System.out.println("USER CREATED");
 			} else {
-				model.addAttribute("error", true);
+				
+				rm.addFlashAttribute("error", true);
 			}
 		}else {
-			
+			if(usernameflag==true) {
+				rm.addFlashAttribute("usernameError", true);
+			}
+			if(emailflag==true) {
+				rm.addFlashAttribute("emailError", true);
+			}
 			 return "redirect:/registration";
 		}
-		
+		rm.addFlashAttribute("registerSuccess", true);
 		return "redirect:/login";
 	}
 	

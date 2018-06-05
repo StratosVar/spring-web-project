@@ -5,6 +5,12 @@
 	<div class="col-md-3"></div>
 	<div class="col-md-6">
 		<!-- startpoint 1 -->
+				<c:if test="${usernameError eq true}"> 		
+				<h6>That username already exists</h6>
+				</c:if>
+				<c:if test="${emailError eq true}"> 		
+				<h6>That email already exists</h6>
+				</c:if>
 		<form accept-charset="ISO-8859-1" action="/registration/submit"
 			id="fileForm" method="post" role="form">
 			<fieldset>

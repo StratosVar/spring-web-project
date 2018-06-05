@@ -19,6 +19,9 @@
 				<c:if test="${login eq true}"> 		
 				<h6>You have already logged in, but you must login again for security purposes</h6>
 				</c:if>
+				<c:if test="${registerSuccess eq true}"> 		
+				<h6>You have successfully registered! Please log in</h6>
+				</c:if>
 			<div class="row">
 				<div class="col-sm-4"></div>
 				<div class="col-sm-4">
