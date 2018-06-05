@@ -1,5 +1,6 @@
 package com.conversation.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.conversation.model.Category;
 import com.conversation.model.Partner;
+import com.conversation.repository.CategoryData;
 import com.conversation.repository.ConversationData;
 import com.conversation.repository.PartnerData;
 
@@ -24,6 +27,9 @@ public class FindPartnerController {
 	@Autowired
 	ConversationData convData;
 	
+	@Autowired
+	CategoryData cd;
+	
 	
 	@GetMapping("/users1")
 	public String findPartner(Pageable pageable,Model model) {
@@ -34,6 +40,10 @@ public class FindPartnerController {
 		model.addAttribute("list",page.getContent());	
 		model.addAttribute("totalpages", page.getTotalPages());
 		model.addAttribute("totalresults", page.getTotalElements());
+		/*Model for categories select list*/
+		ArrayList<Category> categories = cd.findAll();
+		model.addAttribute("categories",categories);
+		
 		return "search-users";
 	}
 	
@@ -42,6 +52,9 @@ public class FindPartnerController {
 			@RequestParam(name = "category", defaultValue = "0",required = false) Integer id,
 			@RequestParam(name = "keyword", defaultValue = "NOVALUE") String keyword, Pageable pageable, Model model) {
 		//pd.findAll();//need this because of silly bug fr native query
+		
+		
+		
 		
 		Page<Partner> list=pd.findAll(pageable);
 		try {
@@ -85,6 +98,12 @@ public class FindPartnerController {
 		}catch (NullPointerException e) {
 			model.addAttribute("error", true);
 		}
+		
+		
+		/*Model for categories select list*/
+		ArrayList<Category> categories = cd.findAll();
+		model.addAttribute("categories",categories);
+		
 		return "search-users";
 	}
 	

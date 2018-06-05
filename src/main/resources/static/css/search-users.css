@@ -265,7 +265,7 @@ p.commenttextsize{
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
-.table-conversations tr:hover {background-color:white;}
+.table-conversations .trow:hover {background-color:white;}
 
 
 #conversationsTable h3{
