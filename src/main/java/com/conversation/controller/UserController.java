@@ -45,12 +45,16 @@ public class UserController {
 	@PostMapping("/saveUser")
 	public String userProfileSave(@ModelAttribute("user") User user, @RequestParam(value="password",defaultValue="0")String password,HttpSession session) { 
 		//@ModelAttribute("user") User user must go first or else null pointer exception
+		
+		if (session.getAttribute("id")==null){
+			return  "redirect:/logout";
+		}	
+			
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		
 		User u = ud.findById(user.getId());	
 		String thepassword = u.getPassword();
-		
-		
+			
 		if (!password.equals("0")) {
 			String hashedPassword = passwordEncoder.encode(password);
 			user.setPassword(hashedPassword);
@@ -59,9 +63,7 @@ public class UserController {
 			user.setPassword(thepassword);
 		}
 		
-		
-		
-		
+			
 		System.out.println("The passwords 1) user database,2 form jstl,3 if not 0");
 		System.out.println(u.getPassword());
 		System.out.println(user.getPassword());

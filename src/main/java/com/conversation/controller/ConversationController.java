@@ -100,7 +100,7 @@ public class ConversationController {
 //		}
 		
 		//Make   flag unread to read
-		//with stream
+		//with stream lamda exp
 		unreadlist.stream()
 				.forEach(m->{
 					m.setUnread(false);

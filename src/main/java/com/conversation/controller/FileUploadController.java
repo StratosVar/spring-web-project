@@ -28,6 +28,10 @@ public class FileUploadController {
 	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
 	public String uploadFileHandler(@RequestParam(value="name",required=false) String name, @RequestParam("file") MultipartFile file,HttpSession session) {
 		
+		if (session.getAttribute("id")==null){
+			return  "redirect:/logout";
+		}	
+		
 		int userid=(int)session.getAttribute("id");
 		String fileExtension = FilenameUtils.getExtension(file.getOriginalFilename());
 		User user=ud.findById(userid);

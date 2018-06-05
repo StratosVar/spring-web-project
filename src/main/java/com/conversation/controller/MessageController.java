@@ -47,8 +47,6 @@ public class MessageController {
 	public String sendMessage(Model model, HttpSession session,HttpServletRequest request, @RequestParam(value="conversationId",required=false) Integer conversationId ,
 			@RequestParam(value="text",required=false) String text) {
 		
-	
-		
 			if (session.getAttribute("id")==null){
 			return  "login";
 		}	

@@ -97,6 +97,10 @@ public class PartnerController {
 			@RequestParam("text")String text, 
 			Pageable pageable,Model model,HttpSession session) {
 		
+		if (session.getAttribute("id")==null){
+			return  "redirect:/logout";
+		}	
+		
 		int userid = (int) session.getAttribute("id");
 
 		Optional<Partner> p = pd.findById(id);
@@ -131,6 +135,10 @@ public class PartnerController {
 			@RequestParam("title")String title,
 			@RequestParam("review")String reviewText,
 			@RequestParam("rating")double points,Model model,HttpSession session,RedirectAttributes rm) {
+		
+		if (session.getAttribute("id")==null){
+			return  "redirect:/logout";
+		}	
 		
 		Integer PartnerId = id;
 		Integer ReviewerId = (Integer) session.getAttribute("id");
