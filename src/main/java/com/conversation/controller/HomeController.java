@@ -179,10 +179,6 @@ public class HomeController {
 		return "about";
 	}
 
-	@RequestMapping("/services-site")
-	public String servicesHome() {
-		return "services";
-	}
 	
 	@RequestMapping("/administrator")
 	public String administrator() {

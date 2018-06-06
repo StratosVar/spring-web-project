@@ -5,7 +5,7 @@
 .st {
 	
   padding-top:20px;
-  padding-bottom:100px;
+  padding-bottom:14%;
 }
 
 
@@ -60,6 +60,5 @@
 		<h6>Wrong password</h6>
 		</c:if>
 </center>
-<c:import url="footer.jsp"></c:import>  
 
 <c:import url="footer.jsp"></c:import>  

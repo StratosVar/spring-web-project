@@ -57,7 +57,6 @@
                     <ul class="nav navbar-nav navbar-right">
                          <li><a href="/home">Home</a></li>
                         <li><a href="/about">About</a></li>
-                        <li><a href="/services-site">Services</a></li>
                         <li><a href="${pageContext.request.contextPath}/users1">search</a></li>  
                         <c:if test="${sessionScope.loggedin == true}" > 
                         <li> <a href="${pageContext.request.contextPath}/conversations/?id=${sessionScope.id}">conversations</a></li>  <li><a href="${pageContext.request.contextPath}/profile">profile</a></li>
