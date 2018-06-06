@@ -26,7 +26,7 @@ ul{
 
 #showcase{
     min-height:500px;
-    background: url("../img/main.jpg") no-repeat center;
+    background: url("${pageContext.request.contextPath}/images/main.jpg") no-repeat center;
     color: #ffffff;
     width: 100%;
     height: auto;
@@ -54,19 +54,6 @@ ul{
     filter: blur(0.5px);
 }
 
-#buttons{
-    padding:15px;
-    color: #ffffff;
-    background: #35424a;
-    border-top: #e8491d 3px solid;
-}
-#buttons form{
-    float: right;
-    margin-top: 15px;
-}
-#buttons .container{
-    text-align: center;
-}
 
 .btn-strat{
     background-color: #e8491d;
@@ -94,7 +81,7 @@ ul{
 #boxes .box{
     float: left;
     text-align: center;
-    width: 30%;
+    width: 33%;
     padding: 100px;
     margin-top: -7%;
     
@@ -150,11 +137,7 @@ ul#services{
     #showcase h1{
         margin-top: 40px;
     }
-    #buttons .btn .quote button{
-        display: block;
-        width: 100%;
-    }
-
+  
 
 }
 
@@ -168,27 +151,22 @@ ul#services{
         </div>
     </section>
 
-    <section id="buttons">
-        <div class="container">
-            <button class="btn-strat">LogIn</button>
-            <button class="btn-strat">Register</button>
-        </div>
-    </section>
+    
     <section id="boxes">
         <div class="container">
             <div class="box">
-                <img src="img/images.jpg">
+                <img src="${pageContext.request.contextPath}/images/images.jpg">
                 <h3>Register as a simple user</h3>
                 <p>Feel free to Register as a simple user. Get answers by professionals.Save time and money and get their services.</p>
             </div>
             <div class="box">
-                <img src="img/images2.jpg">
+                <img src="${pageContext.request.contextPath}/images/images2.jpg">
                 <h3>Register as a specialist</h3>
                 <p>Join the community of the professionals and get ratted by answersering questions.Gain reputation and offer
                     your services.</p>
             </div>
             <div class="box">
-                <img src="img/why.jpg">
+                <img src="${pageContext.request.contextPath}/images/why.jpg">
                 <h3>Why we do it</h3>
                 <p>It is important not to overlook the marketing potential that lies within the content of your website’s About
                     Us page. 

@@ -296,6 +296,7 @@ p.commenttextsize{
     color: #fff;
 }
 #formsearchusers button[type="submit"]:hover{
-    background: #6B9FFF;
+    background: linear-gradient(to bottom,#5bc0de 0,#2aabd2 100%)	;
+    border-bottom:2px solid #5bc0de;
     color:#fff;
 }

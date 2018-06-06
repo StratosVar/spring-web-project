@@ -2,7 +2,7 @@
 <c:import url="header.jsp"></c:import>
     <section id="main">
         <div class="container">
-            <article id="main-col">
+            <article id="main-col"  style="background:#f4f7f8;border-radius: 15px 50px 30px;">
                 <h1 class="page-title">About Us</h1>
                 <p>
                     We created the Secialists Site with the user's perspective in mind. We wanted to offer a platform that would require no skills

@@ -105,6 +105,12 @@ public class FindPartnerController {
 		ArrayList<Category> categories = cd.findAll();
 		model.addAttribute("categories",categories);
 		
+		int perpage = pageable.getPageSize();
+		model.addAttribute("star",star);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("category",id);
+		model.addAttribute("perpage",perpage);
+		
 		return "search-users";
 	}
 	
