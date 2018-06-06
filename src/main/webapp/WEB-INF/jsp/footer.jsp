@@ -23,19 +23,19 @@
         	<div class="col-md-2 footer-menu">
             	<h4>Menu</h4>
             	<div class="col-md-0">
-                    <ul class="pages">
-                        <li><a href="#">Travel</a></li>
-                        <li><a href="#">Nature</a></li>
-                        <li><a href="#">Explores</a></li>
-                        <li><a href="#">Science</a></li>
-                        <li><a href="#">Advice</a></li>
+                    <ul class="pagesf" style="padding:0">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Search</a></li>
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Register</a></li>
                     </ul>
                 </div>
   
             </div>
         	<div class="col-md-2 footer-social">
             	<h4>Follow Us</h4>
-            	<ul>
+            	<ul style="padding:0">
                 	<li><a href="#">Facebook</a></li>
                 	<li><a href="#">Twitter</a></li>
                 	<li><a href="#">Instagram</a></li>

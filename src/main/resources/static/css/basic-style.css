@@ -1,10 +1,10 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  font-weight: 300;
+ 
 }
 
-/*For Menu Style*/
+/*menu css*/
 .navbar-default {
     background-color: transparent;
     border-color: transparent;
@@ -41,6 +41,26 @@ body {
     background-color: rgba(0, 173, 62, 0.75);
     color:#fff;
 }
+
+.navbar-default .collapse .adminbtn a{
+    color: #5334ff;
+    border: 1px solid #5334ff;
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-left: 4px;
+    display:inline-block;
+    overflow:hidden;
+}
+
+.navbar-default .collapse .adminbtn:hover a{
+    background-color: #5334ff;
+    color:#fff;
+}
+
+
+
 .navbar-nav>li>a:hover {
     color: #82ca9c;
     background-color: transparent;

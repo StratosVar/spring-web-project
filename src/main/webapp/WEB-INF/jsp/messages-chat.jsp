@@ -83,8 +83,8 @@
 
 				<input type="text" name="text" placeholder="type here..."> <input
 					type="hidden" name="conversationId" value="${conversationId}">
-				<button class="btn-success" style="font-size:20px;width:30px;padding:5px;">
-					<i class="fa fa-level-up"></i>
+				<button class="btn-warning" style="font-size:20px;width:2em;padding:5px;border-radius: 50%;">
+					<i class="fa fa-paper-plane"></i>
 				</button>
 				
 			</form>

@@ -111,6 +111,8 @@ public class FindPartnerController {
 		model.addAttribute("category",id);
 		model.addAttribute("perpage",perpage);
 		
+		System.out.println(star);
+		
 		return "search-users";
 	}
 	

@@ -16,6 +16,7 @@ th {
 	background:none repeat scroll 0 0 #09c332;
 	padding:10px;
 	color: #FFFFFF;
+	
 }
 
 tr {
@@ -60,4 +61,10 @@ ul.dropdown-lr {
 	.dropdown-lr label {
 		color: #eee;
 	}
+}
+
+/*  Footer*/
+
+.pagesf {
+    padding:0;
 }

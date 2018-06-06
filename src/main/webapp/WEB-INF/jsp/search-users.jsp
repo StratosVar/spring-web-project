@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!--Custom tag for replacing attributes-->
-<%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
+
 <c:import url="header.jsp"></c:import>
 
 <div class="container">
@@ -67,7 +67,7 @@
 				<label><input type="checkbox"> Remember me</label>
 			</div> -->
 
-			<label for="keyword">Rating
+			<label for="keyword">Rating</label> 	
 				<div class="form-group">
 
 
@@ -92,43 +92,37 @@
 			 var perpage = '${perpage}';
 
 			if  (perpage!=0)
-			function selectSize() {
-			    document.getElementById("size"+perpage).selected = "true";
-			}
-
-			window.onload = selectSize();
+			$( document ).ready(function() {			
+				document.getElementById("size"+perpage).selected = "true";
+		});	
 
 			 var category = "${category}";
 			if  (category!=0)
-			function selectCategory() {
-				document.getElementById("category"+category).selected = "true";
-			}
 
-			window.onload =  selectCategory();
+				$( document ).ready(function() {			
+						document.getElementById("category"+category).selected = "true";
+				});	
  
 			var star = "${star}";
 			var starInt = star | 0 ;
 			if  (star!=0)
-			function selectStar() {
-				document.getElementById("star-"+starInt).checked = "true";
-			}
-
-			window.onload =  selectStar();
+				$( document ).ready(function() {
+					document.getElementById("star-"+starInt).checked = "true";
+			});	
+			
 
 			var keyword = "${keyword}";
 		
 			if  (keyword!="" && keyword!="NOVALUE")
-			function selectKeyword() {
-				document.getElementById("keyword").placeholder = keyword;
-			}
-
-			window.onload =  selectKeyword();
-			
+				$( document ).ready(function() {								
+					document.getElementById("keyword").placeholder = keyword;	
+					});	
+		
 			</script>
 
 
 				</div>
-			</label>
+	
 
 			<button type="submit" class="btn btn-info" style="display: block;">Submit</button>
 		</form>
@@ -153,7 +147,7 @@
 
 				<div class="flex-container">
 					<div class="comment-avatar">
-						<img src="${pageContext.request.contextPath}${user.profileimage}"
+						<img src="${pageContext.request.contextPath}${partner.profileimage}"
 							onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/defaultprofile.png';">
 
 						<!-- BUTTONS HERE -->
@@ -166,7 +160,7 @@
 							class="btn btn-info center-block btn-xs" role="button">Profile</a>
 
 					</div>
-					<!-- Contenedor del Comentario -->
+					
 					<div class="comment-box" style="margin-top: 10px;">
 						<div class="comment-head">
 							<h5 class="comment-name">

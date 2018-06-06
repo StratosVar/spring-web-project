@@ -13,7 +13,7 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/profile_style.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/search-users.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/chat.css">
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/strat.css">
+  
 
   <script src="${pageContext.request.contextPath}/js/basic.js"></script>
   <script src="${pageContext.request.contextPath}/js/form.js"></script>
@@ -48,7 +48,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><img src="${pageContext.request.contextPath}/images/logo.png" alt="Logo" /></a>
+                    <a class="navbar-brand" href="#"><img id="logoimg" src="${pageContext.request.contextPath}/images/logo.png" alt="Logo" /></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -69,6 +69,10 @@
 
                         <c:if test="${sessionScope.loggedin == true}" > 
                         <li class="login"> <a  href="${pageContext.request.contextPath}/logout">logout</a></li>
+                        </c:if>
+
+                        <c:if test="${sessionScope.isadmin == true}" > 
+                        <li class="adminbtn"> <a  href="${pageContext.request.contextPath}/admin">admin</a></li>
                         </c:if>
 
                     </ul>

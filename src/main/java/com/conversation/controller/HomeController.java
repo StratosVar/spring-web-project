@@ -74,6 +74,7 @@ public class HomeController {
 				session.setAttribute("id", u.getId());
 				session.setAttribute("username", u.getUsername());
 				session.setAttribute("loggedin", true);
+				session.setAttribute("isadmin", u.getIsadmin());
 				return "redirect:/users1";
 			} else {
 				model.addAttribute("passwordError", true);

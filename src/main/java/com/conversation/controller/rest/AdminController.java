@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -46,7 +47,7 @@ public class AdminController {
 	
 
 
-	
+	@CrossOrigin
 	@RequestMapping(value = "/foos123", method = RequestMethod.GET,headers="Accept=application/json")
 	public List<MessageRest> findAlla(HttpSession session) {
 		System.out.println(session.getCreationTime());
@@ -77,7 +78,7 @@ public class AdminController {
 	
 	
 	
-	
+	@CrossOrigin
 	@RequestMapping("/users123")
 	public @ResponseBody List<UserRest> userlist() {
 		List<UserRest> restlist=new ArrayList<UserRest>();
@@ -153,9 +154,10 @@ public class AdminController {
 		System.out.println(restUser);
 		User u=new User(restUser);
 		User udb=ud.findById(u.getId());
-		System.out.println(udb);
+		System.out.println(restUser.getRole());
 		//u.setProfileimage();
 		u.setPassword(udb.getPassword());
+		
 		if(restUser.getIsadmin().equals("true")) {
 			u.setIsadmin(true);
 		}else {
@@ -164,7 +166,17 @@ public class AdminController {
 
 		
 		try {
+			if(restUser.getRole().equals("partner")) {
+				Optional<Partner> p=pd.findById(restUser.getId());
+				p.get().setUsername(restUser.getUsername());
+				p.get().setFirstName(restUser.getFirstName());
+				p.get().setLastName(restUser.getLastName());
+				p.get().setIsadmin(u.getIsadmin());
+				p.get().setEmail(restUser.getEmail());
+				pd.save(p.get());
+				}else {
 			ud.save(u);
+			}
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
