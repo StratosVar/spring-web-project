@@ -10,45 +10,39 @@
 	<div class="row"></div>
 </div>
 
+
 <section class="containerUsers jumbotron">
 
 	<!-- SEARCH FILTERS -->
 	<div class="col-md-4 sidenav">
-		<form action="/usersResults" method="get" autocomplete="on">
+		<form id="formsearchusers" action="/usersResults" method="get" autocomplete="on">
 
 
 			<div class="form-group">
 				<label for="keyword">KEYWORD SEARCH</label> <input type="search"
-					class="form-control" name="keyword" id="keyword" placeholder="Keyword">
+					class="form-control" name="keyword" id="keyword">
 			</div>
 
-
-			<div class="form-group">
-				<label for="keyword">Category</label>
-				<!-- 	<select name="category" class="form-control" >
+			
+				<div class="form-group">
+				<label for="keyword">Category</label>			
+	
+			
+			<select name="category" class="form-control">
 					<option value="0"  default>---Select Category---</option>
-					<option value="1">DOCOTOS</option>
-					<option value="2">MASTORES</option>
-					<option value="3">KATHIGITES</option>
-				</select> --->
-
-
-				<!-- Get categories from categories table -->
-
-				<select name="category" class="form-control">
-					<option value="0" default>---Select Category---</option>
-					<c:forEach items="${categories}" var="cat">
-						<option id="category${cat.id}" value="${cat.id}">${cat.category}</option>
-					</c:forEach>
-				</select>
-
+				<c:forEach items="${categories}" var="cat">
+					<option value="${cat.id}">${cat.category}</option>
+				</c:forEach>
+			</select>
+			
 			</div>
-
-			<input type="hidden" name="sort" value="totalpoints,desc">
+			
+			 <input type="hidden" name="sort" value="totalpoints,desc">
 
 
 			<div class="form-group">
-				<label for="keyword">Result no</label> <select name="size"
+				<label for="keyword">Result no</label> 
+				<select name="size"
 					class="form-control">
 					<option id="size5" value="5" selected>5</option>
 					<option id="size10" value="10">10</option>
@@ -56,10 +50,13 @@
 					<option id="size50" value="50">50</option>
 				</select>
 			</div>
-
+			<script>
+			function myFunction() {
+    		document.getElementById("stars50").selected = "true";
+					}
+			</script>
 			
 			
-
 
 
 
@@ -73,58 +70,19 @@
 
 					<div class="stars">
 
-						<input class="star star-5" id="star-5" type="radio" name="star"
-							value="5" /> <label class="star star-5" for="star-5"></label> <input
-							class="star star-4" id="star-4" type="radio" name="star"
-							value="4" /> <label class="star star-4" for="star-4"></label> <input
-							class="star star-3" id="star-3" type="radio" name="star"
-							value="3" /> <label class="star star-3" for="star-3"></label> <input
-							class="star star-2" id="star-2" type="radio" name="star"
-							value="2" /> <label class="star star-2" for="star-2"></label> <input
-							class="star star-1" id="star-1" type="radio" name="star"
-							value="1" /> <label class="star star-1" for="star-1"></label>
-
+							<input class="star star-5" id="star-5" type="radio" name="star" value="5" /> 
+							<label class="star star-5" for="star-5"></label> 
+							<input class="star star-4" id="star-4" type="radio" name="star" value="4" /> 
+							<label class="star star-4" for="star-4"></label> 
+							<input class="star star-3" id="star-3" type="radio" name="star" value="3" /> 
+							<label class="star star-3" for="star-3"></label> 
+							<input class="star star-2" id="star-2" type="radio" name="star" value="2" /> 
+							<label class="star star-2" for="star-2"></label>
+							<input class="star star-1" id="star-1" type="radio" name="star" value="1" /> 
+							<label class="star star-1" for="star-1"></label>
 
 					</div>
 
-
-			<script>
-			 var perpage = '${perpage}';
-
-			if  (perpage!=0)
-			function selectSize() {
-			    document.getElementById("size"+perpage).selected = "true";
-			}
-
-			window.onload = selectSize();
-
-			 var category = "${category}";
-			if  (category!=0)
-			function selectCategory() {
-				document.getElementById("category"+category).selected = "true";
-			}
-
-			window.onload =  selectCategory();
- 
-			var star = "${star}";
-			var starInt = star | 0 ;
-			if  (star!=0)
-			function selectStar() {
-				document.getElementById("star-"+starInt).checked = "true";
-			}
-
-			window.onload =  selectStar();
-
-			var keyword = "${keyword}";
-		
-			if  (keyword!="" && keyword!="NOVALUE")
-			function selectKeyword() {
-				document.getElementById("keyword").placeholder = keyword;
-			}
-
-			window.onload =  selectKeyword();
-			
-			</script>
 
 
 				</div>
@@ -139,10 +97,9 @@
 		<!-- START OF CONTAINER 8 COLUMN -->
 
 		<c:if test="${empty list}">
-			<div class="col-xs-12 text-center">
+			<div class="col-xs-12 text-center" >
 				<br>
-				<h4>No results found for selected criteria.</h4>
-				
+				<h4>NO RESULTS FOUND...</h4>
 			</div>
 		</c:if>
 
@@ -153,7 +110,7 @@
 
 				<div class="flex-container">
 					<div class="comment-avatar">
-						<img src="${pageContext.request.contextPath}${user.profileimage}"
+						<img src="${pageContext.request.contextPath}${partner.profileimage}"
 							onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/defaultprofile.png';">
 
 						<!-- BUTTONS HERE -->
