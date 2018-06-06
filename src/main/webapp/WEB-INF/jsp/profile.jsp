@@ -21,7 +21,7 @@
   
 					<form id="profile-image-form" method="POST" action="uploadFile" enctype="multipart/form-data">
 					<input id="profile-image-upload" name="file" class="hidden" type="file">
-					<button type="submit" value="Submit">Submit</button>
+					<button class="btn-primary btn-xs" type="submit" value="Submit">upload</button>
 					</form>
 						<script>
 					$(function() {
@@ -36,7 +36,7 @@
 
 			</div>
 			<div class="col-sm-5">
-				<form:form action="saveUser" modelAttribute="user" method="POST">
+				<form:form action="saveUser" modelAttribute="user" method="POST" class="profile-form">
 					<table class="property_input">
 						<col width="130">
 						<tr>

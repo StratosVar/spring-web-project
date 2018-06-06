@@ -38,7 +38,6 @@ input.hidden {
 
 #profile-image1 {
 	cursor: pointer;
-
 	width: 200px;
 	height: 200px;
 	border:2px solid #03b1ce ;}
@@ -50,7 +49,13 @@ input.hidden {
 	align-items: center;
 	vertical-align: center;
 	margin: 10px;
-	
-
 }
 
+
+/* .profile-form{
+	max-width: 500px;
+    padding: 20px 50px;
+    background: #f4f7f8;
+    border-radius: 12px;
+}
+ */

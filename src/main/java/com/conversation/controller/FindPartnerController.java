@@ -37,7 +37,8 @@ public class FindPartnerController {
 		Page<Partner> page=pd.findAll(pageable);
 		System.out.println(page.getNumberOfElements());
 		System.out.println(page.getTotalPages());
-		model.addAttribute("list",page.getContent());	
+		model.addAttribute("list",page.getContent());
+		
 		model.addAttribute("totalpages", page.getTotalPages());
 		model.addAttribute("totalresults", page.getTotalElements());
 		/*Model for categories select list*/

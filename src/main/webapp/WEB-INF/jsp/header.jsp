@@ -12,7 +12,8 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/basic-style.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/profile_style.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/search-users.css">
-   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/chat.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/chat.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/strat.css">
 
   <script src="${pageContext.request.contextPath}/js/basic.js"></script>
   <script src="${pageContext.request.contextPath}/js/form.js"></script>
@@ -23,8 +24,6 @@
 
   
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-	<link href='https://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -38,49 +37,43 @@
   
 </head>
 <body>
-  <style>
-  .nav a:hover {
-    background-color: #27c77ded;
-  
-}
-</style>
 
+<nav class="navbar navbar-default">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><img src="${pageContext.request.contextPath}/images/logo.png" alt="Logo" /></a>
+                </div>
 
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-  <nav class=" navbar ">
-    <div class="container-fluid">
+                    <ul class="nav navbar-nav navbar-right">
+                         <li><a href="/home">Home</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/services-site">Services</a></li>
+                        <li><a href="${pageContext.request.contextPath}/users1">search</a></li>  
+                        <c:if test="${sessionScope.loggedin == true}" > 
+                        <li> <a href="${pageContext.request.contextPath}/conversations/?id=${sessionScope.id}">conversations</a></li>  <li><a href="${pageContext.request.contextPath}/profile">profile</a></li>
+                        </c:if>
 
-      <div class="navbar-header">
+                        <c:if test="${sessionScope.loggedin == null}" > 
+                        <li class="login"> <a  href="${pageContext.request.contextPath}/login">login</a></li>
+                        <li class="login"> <a  href="${pageContext.request.contextPath}/registration">Register</a></li>
+                        </c:if>
 
-        <button type="button btn" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style="background-color: rgba(115, 125, 150,0.1);">options</button>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>                        
-        </button>
+                        <c:if test="${sessionScope.loggedin == true}" > 
+                        <li class="login"> <a  href="${pageContext.request.contextPath}/logout">logout</a></li>
+                        </c:if>
 
-        <a class="navbar-brand" href="#"><p style=" font-weight:bold; font-size: 180%;color:#27c77ded">Ask a pro</p></a>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
+                    </ul>
 
-        <div class="nav navbar-nav navbar-right">
-          <a class="navbar-brand" href="${pageContext.request.contextPath}/users1">search</a>
-          <c:if test="${sessionScope.loggedin == true}" > 
-          <a class="navbar-brand" href="${pageContext.request.contextPath}/conversations/?id=${sessionScope.id}">conversations</a>
-           </c:if>
-          <c:if test="${sessionScope.loggedin == true}" > 
-          <a class="navbar-brand" href="${pageContext.request.contextPath}/profile">profile</a>
-          </c:if>
-           <c:if test="${sessionScope.loggedin == null}" > 
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/login">login</a>
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/registration">Register</a>
-          </c:if>
-          <c:if test="${sessionScope.loggedin == true}" > 
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/logout">logout</a>
-          </c:if>
-          
-
-          
-        </div>
-      </div>
-    </div> 
-  </nav>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>

@@ -92,8 +92,8 @@ body{
 .message ul li.msg-right .msg-desc{
 	margin-right: 70px;
 	font-size: 12px;
-	background:#38cb86;  /*#cce5ff*/
-	color: #004085;
+	background:#43D1AF;  /*#cce5ff*/
+	color: #fffbfb;
 	padding:5px 10px;
 	border-radius: 10px 10px 10px 10px;
 	position: relative;

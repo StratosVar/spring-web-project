@@ -13,14 +13,14 @@
 
 
 
-<div class="body-section col-md-10 jumbotron" style="width: 100%">
+<div class="body-section col-md-10 jumbotron" style="width: 100%;position: inherit;">
 	<div class="col-md-3">
 		<h4>Conversation Details</h4><br>
 		<h5>Professional:${conversation.interlocutor.firstName} ${conversation.interlocutor.lastName} </h5>
 		<h5>Questioner:${conversation.creator.firstName} ${conversation.creator.lastName}</h5>
 		<h5>Total Messages: ${totalMessages}</h5>
 	</div>
-	<div class="col-lg-8">
+	<div class="col-md-8">
 		<div class="col-md-10 right-section" style="overflow: auto">
 			<div class="message">
 				<ul>
@@ -47,7 +47,7 @@
 						<c:if test="${message.sender.username == sessionScope.username}">
 							<li class="msg-right">
 								<div class="msg-left-sub">
-									<img class="img-circle" src="${pageContext.request.contextPath}/profile_images/${sessionScope.id}.jpg">
+									<img class="img-circle" src="${pageContext.request.contextPath}/profile_images/${sessionScope.id}.jpg" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/defaultprofile.png';">
 									<div class="msg-desc">${message.text}</div>
 									<small><fmt:formatDate pattern="dd-MM-yyyy hh:mm:ss a" value="${message.dateTime}" /></small>
 								</div>
@@ -58,7 +58,7 @@
 
 							<li class="msg-left">
 								<div class="msg-left-sub">
-									<img class="img-circle" src="${pageContext.request.contextPath}/profile_images/${sessionScope.id}.jpg">
+									<img class="img-circle" src="${pageContext.request.contextPath}/profile_images/${sessionScope.id}.jpg" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/defaultprofile.png';">
 									<div class="msg-desc">${message.text}</div>
 									<small>${message.dateTime}</small>
 								</div>
@@ -86,7 +86,7 @@
 				<button class="btn-success" style="font-size:20px;width:30px;padding:5px;">
 					<i class="fa fa-level-up"></i>
 				</button>
-				<button type="button" class="btn-success" onclick="location.reload(true);">Reload page</button>
+				
 			</form>
 		</div>
 	</div>

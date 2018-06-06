@@ -1,8 +1,8 @@
 <style>
 .footer {
 	
-    background-color: #27c77ded;
-	padding: 60px 40px;
+    background-color: #43D1AF;
+	padding: 30px 40px;
 	color: rgba(255,255,255,1.00);
 	border-bottom-right-radius: 6px;
 	border-top-left-radius: 0px;
@@ -18,7 +18,7 @@
         	<div class="col-md-3">
             	<h2>Ask a pro </h2>
                 <p>Web project for coding bootcamp</p>
-                <p>2018 All rights reserved</p>
+                <p>2018 &copy;</p>
             </div>
         	<div class="col-md-2 footer-menu">
             	<h4>Menu</h4>

@@ -10,11 +10,12 @@
 	<div class="row"></div>
 </div>
 
+
 <section class="containerUsers jumbotron">
 
 	<!-- SEARCH FILTERS -->
 	<div class="col-md-4 sidenav">
-		<form action="/usersResults" method="get" autocomplete="on">
+		<form id="formsearchusers" action="/usersResults" method="get" autocomplete="on">
 
 
 			<div class="form-group">
@@ -25,15 +26,7 @@
 			
 				<div class="form-group">
 				<label for="keyword">Category</label>			
-			<!-- 	<select name="category" class="form-control" >
-					<option value="0"  default>---Select Category---</option>
-					<option value="1">DOCOTOS</option>
-					<option value="2">MASTORES</option>
-					<option value="3">KATHIGITES</option>
-				</select> --->
-			
-
-			<!-- Get categories from categories table -->
+	
 			
 			<select name="category" class="form-control">
 					<option value="0"  default>---Select Category---</option>
@@ -117,7 +110,7 @@
 
 				<div class="flex-container">
 					<div class="comment-avatar">
-						<img src="${pageContext.request.contextPath}${user.profileimage}"
+						<img src="${pageContext.request.contextPath}${partner.profileimage}"
 							onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/defaultprofile.png';">
 
 						<!-- BUTTONS HERE -->

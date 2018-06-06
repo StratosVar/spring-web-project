@@ -157,7 +157,7 @@ ul {
 
 .containerUsers {
   width:100%;
-  margin-top: 20px;
+  margin-top: 0px;
   display: inline-table;
   flex-wrap: wrap;
   justify-content: center;
@@ -272,3 +272,30 @@ p.commenttextsize{
   color:black;
 }
 /* Converasations Css */
+
+
+
+/*SEARCH CSS */
+#formsearchusers {
+	
+	max-width: 500px;
+    padding: 20px 50px;
+    background: #f4f7f8;
+    border-radius: 12px;
+}
+
+
+#formsearchusers button[type="submit"]{
+    width: 100%;
+    padding: 3%;
+    background: #43D1AF;
+    border-bottom: 2px solid #30C29E;
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;    
+    color: #fff;
+}
+#formsearchusers button[type="submit"]:hover{
+    background: #6B9FFF;
+    color:#fff;
+}

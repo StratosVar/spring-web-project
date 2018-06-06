@@ -166,14 +166,28 @@ public class HomeController {
 		return "redirect:/login";
 	}
 	
-	
 	@RequestMapping("/home")
-		public String home() {
+	public String home() {
 		URL url = this.getClass().getClassLoader().getResource("static");
 		System.out.println(url);
-		return "home";
+		return "index";
+	}
+	
+	@RequestMapping("/about")
+	public String about() {
+		
+		return "about";
 	}
 
+	@RequestMapping("/services-site")
+	public String servicesHome() {
+		return "services";
+	}
 	
-	
+	@RequestMapping("/administrator")
+	public String administrator() {
+		
+		return "administrator";
+	}
+
 }
