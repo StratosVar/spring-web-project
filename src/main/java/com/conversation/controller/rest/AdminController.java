@@ -1,7 +1,9 @@
 package com.conversation.controller.rest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
@@ -72,18 +74,17 @@ public class AdminController {
 			msgo.setId(message.getId());
 			msgo.setReceiver(message.getReceiver().getUsername());
 			msgo.setSender(message.getSender().getUsername());
+			msgo.setText(message.getText());
 			m.add(msgo);
 		});
 		
 		return new ResponseEntity<List<MessageRest>>(m, HttpStatus.OK);
 	}
 	
-	
-	
-	
+
 	@CrossOrigin
 	@RequestMapping("/users")
-	public @ResponseBody ResponseEntity<List<UserRest>> userlist(HttpSession session) {
+	public  ResponseEntity<List<UserRest>> userlist(HttpSession session) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.set("Problem", "problemo");
 		
@@ -119,14 +120,14 @@ public class AdminController {
 	
 	
 	
-	@RequestMapping("/admin")
+	@RequestMapping("/admin123")
 	public String admin() {
 		String password = "123456";
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String hashedPassword = passwordEncoder.encode(password);
 	
 		//System.out.println(passwordEncoder.matches(password, john.getPassword()));		
-		return "/thanasis/admin";
+		return hashedPassword;
 	}
 
 	
@@ -215,4 +216,24 @@ public class AdminController {
 		return new ResponseEntity<List<Message>>(list, httpHeaders, HttpStatus.OK);
 
 	}
+	
+	
+	
+	@RequestMapping(value = "/allmessagesusers", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<Map>allmessages(HttpSession session) {
+//		if(session.getAttribute("isadmin")==null) {
+//			return new ResponseEntity<Map>(HttpStatus.FORBIDDEN);
+//		}
+
+		long totalmessages = md.count();
+		long totalusers =ud.count();
+		Map map=new HashMap();
+		map.put("totalmessages", totalmessages);
+		map.put("totalusers", totalusers);
+		final HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+		return new ResponseEntity<Map>(map, httpHeaders, HttpStatus.OK);
+
+	}
+	
 }

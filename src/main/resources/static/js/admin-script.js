@@ -21,7 +21,7 @@ $(document).ready(function(){
 			dataType: "json",
 			contentType : "application/json",
 			type: 'POST',
-			url: 'http://127.0.0.1:8080/admin/add',
+			url: '/admin/add',
 			success: function(result){
 				$messages.empty();
 				$.each(result, function (i, user) { 	
@@ -44,7 +44,7 @@ $('#add-message').on('click',function (event) {
 	$.ajax({
 		
 		type: 'GET',
-		url: 'http://127.0.0.1:8080/admin/messages',
+		url: '/admin/messages',
 		success: function (data) {
 			console.log('success', data);	
 			$.each(data, function (i, message) {
@@ -190,7 +190,7 @@ $('#confirm-delete').on('show.bs.modal', function(e) {
     $( ".btn-ok" ).click(function() {
    	$.ajax({	
    		type: 'DELETE',
-   		url: 'http://127.0.0.1:8080/admin/delete-user/'+$userid+'',
+   		url: '/admin/delete-user/'+$userid+'',
    		success: function (data) {
    			
    			$("#table").hide(function(){
@@ -264,7 +264,7 @@ $(document).on('click', '.data1', function(e) {
 			// dataType: "json",
 			contentType : "application/json",
 			type: 'POST',
-			url: 'http://127.0.0.1:8080/admin/update-user',
+			url: '/admin/update-user',
 			success: function(result){
 				$("#table").hide(function(){
 					$('#add-users').click();
@@ -284,8 +284,21 @@ $(document).on('click', '.data1', function(e) {
 	});
 	});
 });
+   
+    
 
-
-
-
-
+$( document ).ready(function() {
+    setInterval(function(){
+    $.ajax({ 
+    url: "/admin/allmessagesusers", 
+    success: function(data){
+    	$("#totalmessages").text(data.totalmessages);
+    	$("#totalusers").text(data.totalusers);
+    	
+        console.log(data.totalmessages);
+        console.log(data.totalusers);
+      
+   		 	}
+		});
+	}, 3000);
+});

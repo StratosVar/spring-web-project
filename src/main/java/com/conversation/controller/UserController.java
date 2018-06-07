@@ -77,13 +77,13 @@ public class UserController {
 			p.get().setLastName(user.getLastName());
 			p.get().setUsername(user.getUsername());
 			p.get().setPassword(thepassword);
-			p.get().setProfileimage(user.getProfileimage());
+			p.get().setProfileimage(u.getProfileimage());
 			
 			pd.save(p.get());
 		} else {
 			user.setProfileimage(u.getProfileimage());
 			user.setRole(u.getRole()); // edw tha mpei gia ton is admin i oxi
-			
+			user.setIsadmin(u.getIsadmin());
 			ud.save(user);
 		}
 		
