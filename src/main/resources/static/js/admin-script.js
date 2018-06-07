@@ -125,7 +125,7 @@ $('#add-users').on('click',function(event){
 	var $usersPatch= '';
 	$.ajax({		
 		type: 'GET',
-		url: 'http://127.0.0.1:8080/admin/users',
+		url: '/admin/users',
 		success: function (data) {
 			console.log('success', data);		
 			$.each(data, function (i, user) {

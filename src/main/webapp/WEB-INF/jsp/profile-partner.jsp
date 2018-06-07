@@ -91,10 +91,6 @@
 							<div class="col-sm-7">${partner.lastName}</div>
 							<div class="clearfix"></div>
 							<div class="bot-border"></div>
-							<div class="col-sm-5 col-xs-6 tital ">Date Of Joining:</div>
-							<div class="col-sm-7">15 Jun 2016</div>
-							<div class="clearfix"></div>
-							<div class="bot-border"></div>
 							<div class="col-sm-5 col-xs-6 tital ">Category:</div>
 							<div class="col-sm-7">${partner.category.category}</div>
 							<div class="clearfix"></div>

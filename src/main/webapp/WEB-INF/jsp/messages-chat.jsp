@@ -25,20 +25,6 @@
 			<div class="message">
 				<ul>
 				
-				<!-- dummy text -->
-					<li class="msg-left">
-						<div class="msg-left-sub">
-							<img class="img-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEPQDZ4QSXjrXEAaHaRDTjX_4_Lfha2QiYM30-mD9gUTErZL4f">
-							<div class="msg-desc">Lorem ipsum dolor sit amet,
-								consectetur adipisicing elit, sed do eiusmod tempor incididunt
-								ut labore et dolore magna aliqua.</div>
-							<small>05:25 am</small>
-						</div>
-					</li>
-				
-
-
-
 
 					<c:forEach items="${list}" var="message">
 

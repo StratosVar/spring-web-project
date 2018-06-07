@@ -83,7 +83,7 @@ public class AdminController {
 	
 
 	@CrossOrigin
-	@RequestMapping("/users")
+	@RequestMapping(value="/users",method = RequestMethod.GET)
 	public  ResponseEntity<List<UserRest>> userlist(HttpSession session) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.set("Problem", "problemo");
