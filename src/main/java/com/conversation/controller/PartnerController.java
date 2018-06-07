@@ -27,6 +27,7 @@ import com.conversation.repository.PartnerData;
 import com.conversation.repository.ReviewData;
 import com.conversation.repository.UserData;
 import com.conversation.service.UserService;
+import com.conversation.tools.FileAccess;
 
 @Controller
 public class PartnerController {
@@ -121,6 +122,8 @@ public class PartnerController {
 		convData.save(c);
 		model.addAttribute("uid", c.getId());
 		
+		//write first to message to txt
+		FileAccess.fileWriterAccess(c, m);
 		
 //		RedirectView redirectView = new RedirectView();
 //		redirectView.setUrl("http://127.0.0.1:8080/showConversation?conversationId="+c.getId());

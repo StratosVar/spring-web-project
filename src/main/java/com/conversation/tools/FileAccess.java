@@ -29,10 +29,10 @@ public class FileAccess {
 		m.setDateTime(d);
 		
 		File directory = new File("./assets/conversation_logs");
-		if (!directory.exists()) {
+		if (!directory.exists()) 
 			directory.mkdir();
 			// use directory.mkdirs(); if more folders needed
-		}
+		
 		try {
 			FileWriter fw = new FileWriter(directory.getPath() + "/" + c.getId() + "_" + ".txt", true);
 			BufferedWriter bw = new BufferedWriter(fw);
