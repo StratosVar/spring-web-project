@@ -1,6 +1,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="header.jsp">
 </c:import>
+<style>
+.buttonregister{
+	width:20%;
+	padding: 3%;
+    background: #43D1AF;
+    border-bottom: 2px solid #30C29E;
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    color: #fff;
+}
+</style>
 <div class="container">
 	<div class="col-md-3"></div>
 	<div class="col-md-6">
@@ -80,16 +92,19 @@
 						<div id="errLast"></div>
 					</div>
 					<div class="form-group">
-						<label for="email"> <span class="req">*</span>Email
-							Address:
-						</label> <input class="form-control" id="email" name="email"
-							onchange="email_validate(this.value);" required type="email" />
-						<div class="status" id="status"></div>
-					</div>
+						<label for="email"> <span class="req">*</span>Email	Address:</label> 
+						<input class="form-control" id="email" name="email" type="email" onblur="email_validate(this.value);" required type="email"/>
+							<span class="availabilityWarning" id="emailStat"></span>
+							<span class="status" id="status"></span>
+							</div>
+						
+					
 					<div class="form-group">
-						<label for="username"> <span class="req">*</span>Username:
-						</label> <input class="form-control" id="txt" name="username" required=""
-							type="text" />
+					
+						<label for="username"> <span class="req">*</span>Username:</label>
+						<input class="form-control" id="username" name="username" required="" type="text" />
+						<span class="availabilityWarning" id = "usernameStat"></span>
+						
 					</div>
 
 					<div class="form-group">
@@ -108,12 +123,11 @@
 					<div class="form-group">
 						<input id="field_terms" name="terms" required type="checkbox">
 						<label for="terms"> I agree with the <a href="terms"
-							title="Terms and conditions">terms and conditions </a>for
-							Registration.
+							title="Terms and conditions">terms and conditions</a>
 						</label> <span class="req"> *</span> </input>
 					</div>
 					<div class="form-group">
-						<input class="btn btn-success" name="submit_reg" type="submit"
+						<input class="btn btn-success buttonregister" name="submit_reg" type="submit"
 							value="Register"> </input>
 					</div>
 				</div>
@@ -124,6 +138,10 @@
 </div>
 <!-- endpoint 1 -->
 <script>
+
+
+
+
     $(document).ready(function(){
     $(".hideable").click(function(){
       $(".kati").hide();
@@ -133,6 +151,120 @@
    
 	});
 	});
+
+    
+    var emailString = $('#email').val();
+    var usernameString = $('#username').val();
+
+
+$(document).ready(function(){
+		$("#email").blur(function(){
+
+			if ($('#email').val()===""){
+				document.getElementById("status").innerHTML = "";
+				document.getElementById("emailStat").innerHTML = "";
+				
+				}
+			else{
+			
+			$.ajax({
+				url:'checkEmail',
+				data:{email: $('#email').val()},
+				success: function(data){
+
+					
+				
+					if (!data)
+					{
+						document.getElementById("status").innerHTML = "";
+						document.getElementById("emailStat").innerHTML = "This email has been registered with another user";
+						document.getElementById("emailStat").style.color = "red";
+
+					}
+					else{
+						document.getElementById("emailStat").innerHTML = "";
+						
+					}
+					
+					
+				}
+
+				});
+			}
+				
+
+			});
+
+});
+
+$(document).ready(function(){
+
+	$("#username").blur(function(){
+
+		if ($('#username').val()===""){
+			
+			document.getElementById("status").innerHTML = "";
+			document.getElementById("emailStat").innerHTML = "";
+			
+			}
+		else{
+		
+		$.ajax({
+			url:'checkUsername',
+			data:{username: $('#username').val()},
+			
+			success: function(data){
+
+				if (data){
+				
+					document.getElementById("usernameStat").innerHTML = "Username OK";
+					document.getElementById("usernameStat").style.color = "green";
+					
+
+					}
+
+				else
+					{
+
+					document.getElementById("usernameStat").innerHTML = "Username already taken.";
+					document.getElementById("usernameStat").style.color = "red";
+					
+
+					}
+				
+
+				}
+
+		});
+		}
+	});
+});
+
+/*	If email field is empty show a reminder, or erase  */
+
+/*	If username field is empty show a reminder, or erase  */
+
+$(document).ready(function(){
+	$("#username").focus(function(){
+
+			
+			document.getElementById("usernameStat").innerHTML = "";
+		
+
+	});
+});
+$(document).ready(function(){
+	$("#email").focus(function(){
+
+			
+			document.getElementById("emailStat").innerHTML = "";
+			document.getElementById("status").innerHTML = "";
+		
+
+	});
+});
+
+
 </script>
 <c:import url="footer.jsp">
 </c:import>

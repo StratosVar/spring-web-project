@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 
 <c:import url="header.jsp">
 </c:import>
@@ -226,10 +227,10 @@
             <div class="text-success">
                 <div class="col-md-12">${review.reviewer.username}
                  	
-                 	<small> Date</small>
+                 	
                     <i class="fa fa-star"></i>${review.points}
-                    
-                   
+                    <small> Date:</small>
+                  <fmt:formatDate pattern="EEE, d MMM yyyy HH:mm" value="${review.dateTime}" />
                 </div>
             </div>
             <div class="row pt-2">

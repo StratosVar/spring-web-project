@@ -12,9 +12,14 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 import com.conversation.model.rest.UserRest;
 
 @Entity
+@DynamicInsert 
+@DynamicUpdate
 @Table(name = "user")
 @Inheritance(strategy = InheritanceType.JOINED)
 //InheritanceType.SINGLE_TABLE
@@ -66,7 +71,7 @@ public class User {
 	private Boolean isadmin;
 	
 	@Column(name = "profile_image")
-	private String profileimage="/profile/images/defaultprofile.png";
+	private String profileimage;
 
 	public int getId() {
 		return id;

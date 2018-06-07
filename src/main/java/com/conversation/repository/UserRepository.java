@@ -12,6 +12,8 @@ public interface UserRepository {
 	public void saveUser(User user);
 	public User getUser(int id);
 	public void deleteUser(int id);
+	public boolean checkIfUsernameExists(String username);
+	public boolean checkIfEmailExists(String email);
 
 	
 	

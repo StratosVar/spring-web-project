@@ -72,7 +72,7 @@
                         </c:if>
 
                         <c:if test="${sessionScope.isadmin == true}" > 
-                        <li class="adminbtn"> <a  href="${pageContext.request.contextPath}/admin">admin</a></li>
+                        <li class="adminbtn"> <a  href="${pageContext.request.contextPath}/administrator">admin</a></li>
                         </c:if>
 
                     </ul>

@@ -44,10 +44,10 @@
             </div>
         	<div class="col-md-4">
             	<h4>Newsletter</h4>
-                <p>A rover wearing a fuzzy suit doesn’t alarm the real penguins</p>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
                 <p>
                     <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Search for...">
+                      <input type="text" class="form-control" placeholder="enter your email address here">
                       <span class="input-group-btn">
                         <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-envelope"></span></button>
                       </span>
@@ -58,18 +58,3 @@
    
   </div>               
                 
-
-
-
-
-<!-- <footer class="container">
-  <div class="row">
-  <p class="col-sm-4"> &copy; 2018 Conversations </p>
-  <p class="col-sm-8"> ... </p>
-</div>
-<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
- 
-</footer>
-  
-</body>
-</html> -->

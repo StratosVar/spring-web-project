@@ -47,7 +47,7 @@
 						<c:if test="${message.sender.username == sessionScope.username}">
 							<li class="msg-right">
 								<div class="msg-left-sub">
-									<img class="img-circle" src="${pageContext.request.contextPath}/profile_images/${sessionScope.id}.jpg" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/defaultprofile.png';">
+									<img class="img-circle" src="${pageContext.request.contextPath}${message.sender.profileimage}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/defaultprofile.png';">
 									<div class="msg-desc">${message.text}</div>
 									<small><fmt:formatDate pattern="dd-MM-yyyy hh:mm:ss a" value="${message.dateTime}" /></small>
 								</div>
@@ -55,10 +55,10 @@
 
 						</c:if>
 						<c:if test="${message.sender.username != sessionScope.username}">
-
+		
 							<li class="msg-left">
 								<div class="msg-left-sub">
-									<img class="img-circle" src="${pageContext.request.contextPath}/profile_images/${sessionScope.id}.jpg" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/defaultprofile.png';">
+									<img class="img-circle" src="${pageContext.request.contextPath}${message.sender.profileimage}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/defaultprofile.png';">
 									<div class="msg-desc">${message.text}</div>
 									<small>${message.dateTime}</small>
 								</div>
@@ -81,7 +81,7 @@
 
 			<form action="/sendMessage" method="POST" accept-charset="ISO-8859-1">
 
-				<input type="text" name="text" placeholder="type here..."> <input
+				<input id="emojicons" type="text" name="text" placeholder="type here..."> <input
 					type="hidden" name="conversationId" value="${conversationId}">
 				<button class="btn-warning" style="font-size:20px;width:2em;padding:5px;border-radius: 50%;">
 					<i class="fa fa-paper-plane"></i>
@@ -91,9 +91,6 @@
 		</div>
 	</div>
 </div>
-
-
-
 
 
 

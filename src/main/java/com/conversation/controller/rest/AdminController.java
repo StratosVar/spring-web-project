@@ -1,13 +1,13 @@
 package com.conversation.controller.rest;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,7 +30,6 @@ import com.conversation.model.rest.UserRest;
 import com.conversation.repository.MessageData;
 import com.conversation.repository.PartnerData;
 import com.conversation.repository.UserData;
-
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
@@ -48,40 +46,53 @@ public class AdminController {
 
 
 	@CrossOrigin
-	@RequestMapping(value = "/foos123", method = RequestMethod.GET,headers="Accept=application/json")
-	public List<MessageRest> findAlla(HttpSession session) {
+	@RequestMapping(value = "/messages", method = RequestMethod.GET,headers="Accept=application/json")
+	public ResponseEntity<List<MessageRest>> findAlla(HttpSession session) {
+		if (session.getAttribute("isadmin") == null) {
+			return new ResponseEntity<List<MessageRest>>(HttpStatus.FORBIDDEN) ;
+		}
+		
 		System.out.println(session.getCreationTime());
 		List<MessageRest> m=new ArrayList<MessageRest>();
 		List<Message> l=md.findAll();
 		
-		for(Message msg:l) {
-			MessageRest msgo=new MessageRest();
-			msgo.setId(msg.getId());
-			msgo.setReceiver(msg.getReceiver().getUsername());
-			msgo.setSender(msg.getSender().getUsername());
-			msgo.setText(msg.getText());
-			m.add(msgo);
-			
-		}
-		//with lamda
-//		l.forEach(message->{
+//		for(Message msg:l) {
 //			MessageRest msgo=new MessageRest();
-//			msgo.setId(message.getId());
-//			msgo.setReceiver(message.getReceiver().getUsername());
-//			msgo.setSender(message.getSender().getUsername());
+//			msgo.setId(msg.getId());
+//			msgo.setReceiver(msg.getReceiver().getUsername());
+//			msgo.setSender(msg.getSender().getUsername());
+//			msgo.setText(msg.getText());
 //			m.add(msgo);
-//		});
+//			
+//		}
 		
-		return m;
+//		with lamda-streams
+		l.forEach(message->{
+			MessageRest msgo=new MessageRest();
+			msgo.setId(message.getId());
+			msgo.setReceiver(message.getReceiver().getUsername());
+			msgo.setSender(message.getSender().getUsername());
+			m.add(msgo);
+		});
+		
+		return new ResponseEntity<List<MessageRest>>(m, HttpStatus.OK);
 	}
 	
 	
 	
 	
 	@CrossOrigin
-	@RequestMapping("/users123")
-	public @ResponseBody List<UserRest> userlist() {
+	@RequestMapping("/users")
+	public @ResponseBody ResponseEntity<List<UserRest>> userlist(HttpSession session) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("Problem", "problemo");
+		
+		if (session.getAttribute("isadmin") == null) {
+			return new ResponseEntity<List<UserRest>>(headers,HttpStatus.FORBIDDEN) ;
+		}
+		
 		List<UserRest> restlist=new ArrayList<UserRest>();
+		
 		
 		Iterable<User> list=ud.findAll();
 		for(User u:list) {
@@ -102,7 +113,7 @@ public class AdminController {
 			restlist.add(user);
 		}
 		
-		return restlist;
+		return new ResponseEntity<List<UserRest>>(restlist, HttpStatus.OK);
 	}
 
 	
@@ -113,30 +124,33 @@ public class AdminController {
 		String password = "123456";
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String hashedPassword = passwordEncoder.encode(password);
-		System.out.println(hashedPassword);
-		
+	
 		//System.out.println(passwordEncoder.matches(password, john.getPassword()));		
 		return "/thanasis/admin";
 	}
 
 	
 	
-	@RequestMapping(value="/add", method = RequestMethod.POST, headers="Accept=application/json")
-	 public ResponseEntity<String> add(@RequestBody User user){
-			
-	  ud.save(user);
-	  
-	  HttpHeaders headers = new HttpHeaders();
-	 System.out.println(headers);
-	  return new ResponseEntity<String>(headers, HttpStatus.CREATED);
-	 }
-	
+	@RequestMapping(value="/add-user", method = RequestMethod.POST, headers="Accept=application/json",produces = MediaType.TEXT_PLAIN_VALUE)
+	 public ResponseEntity<String> add(@RequestBody User user,HttpSession session){	
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("Header", "header");
+		if (session.getAttribute("isadmin") == null) {
+			return new ResponseEntity<String>(headers, HttpStatus.FORBIDDEN);
+		}
+		ud.save(user);
+
+		return new ResponseEntity<String>(headers, HttpStatus.CREATED);
+	}
 
 	
 	
 	@CrossOrigin
 	@RequestMapping(value = "/delete-user/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> deleteUser(@PathVariable("id") int id) {
+	public ResponseEntity<Void> deleteUser(@PathVariable("id") int id,HttpSession session) {
+		if(session.getAttribute("isadmin")==null) {
+			return new ResponseEntity<Void>(HttpStatus.FORBIDDEN);
+		}
 		User u=ud.findById(id);
 		try {
 			ud.delete(u);
@@ -150,7 +164,10 @@ public class AdminController {
 	
 	@CrossOrigin
 	@RequestMapping(value = "/update-user", method = RequestMethod.POST)
-	public ResponseEntity<Void>updateUser(@RequestBody UserRest restUser) {
+	public ResponseEntity<Void>updateUser(@RequestBody UserRest restUser,HttpSession session) {
+		if(session.getAttribute("isadmin")==null) {
+			return new ResponseEntity<Void>(HttpStatus.FORBIDDEN);
+		}
 		System.out.println(restUser);
 		User u=new User(restUser);
 		User udb=ud.findById(u.getId());
@@ -186,10 +203,11 @@ public class AdminController {
 	
 	
 
-
-
 	@RequestMapping(value = "/json", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<List<Message>>bar() {
+	public ResponseEntity<List<Message>>bar(HttpSession session) {
+		if(session.getAttribute("isadmin")==null) {
+			return new ResponseEntity<List<Message>>(HttpStatus.FORBIDDEN);
+		}
 
 		List<Message> list = md.findAll();
 		final HttpHeaders httpHeaders = new HttpHeaders();

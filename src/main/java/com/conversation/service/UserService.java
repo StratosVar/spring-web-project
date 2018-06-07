@@ -20,6 +20,10 @@ public interface UserService {
 
 	public void deleteUser(int id);
 	
+	public boolean checkUsernameAvailability(String username);
+	
+	public boolean checkEmailAvailability(String email);
+	
 
 	
 	

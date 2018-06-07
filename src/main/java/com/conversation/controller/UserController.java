@@ -78,6 +78,7 @@ public class UserController {
 			p.get().setUsername(user.getUsername());
 			p.get().setPassword(thepassword);
 			p.get().setProfileimage(user.getProfileimage());
+			
 			pd.save(p.get());
 		} else {
 			user.setProfileimage(u.getProfileimage());

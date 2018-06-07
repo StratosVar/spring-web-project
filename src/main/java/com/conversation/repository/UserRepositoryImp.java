@@ -124,6 +124,56 @@ public class UserRepositoryImp implements UserRepository {
 	}
 	
 	
+
+	@Override
+	public boolean checkIfUsernameExists(String username) {
+		User user=null;
+
+		boolean answer= false;
+
+		Session session = getSession();
+		Query<User> query = session.createQuery("from User where username=:username", User.class);
+		query.setParameter("username", username);
+
+		try {
+			user = query.getSingleResult();
+		} catch (QueryException | NullPointerException | NoResultException e) {
+
+			answer=false	;
+		}
+
+		if (user!=null)
+			answer=true;
+
+		return answer;
+	}
+
+
+
+	@Override
+	public boolean checkIfEmailExists(String email) {
+		User user=null;
+
+		boolean answer= false;
+
+		Session session = getSession();
+		Query<User> query = session.createQuery("from User where email=:email", User.class);
+		query.setParameter("email", email);
+
+		try {
+			user = query.getSingleResult();
+		} catch (QueryException | NullPointerException | NoResultException e) {
+
+			answer=false	;
+		}
+
+		if (user!=null)
+			answer=true;
+
+		return answer;
+	}
+	
+	
 	
 	
 

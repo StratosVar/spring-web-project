@@ -80,6 +80,7 @@ public class MessageController {
 		
 		model.addAttribute("list", messages);
 		model.addAttribute("conversationId", conversationId);
+
 		
 		String url=request.getRequestURL().toString();
 		return "redirect:/showConversation?conversationId="+conversationId;

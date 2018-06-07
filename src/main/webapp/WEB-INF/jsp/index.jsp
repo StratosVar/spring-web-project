@@ -25,16 +25,19 @@ ul{
 }
 
 #showcase{
-    min-height:500px;
-    background: url("${pageContext.request.contextPath}/images/main.jpg") no-repeat center;
+	min-height:500px;
+    background: url("${pageContext.request.contextPath}/images/image33.jpg") no-repeat center;
     color: #ffffff;
     width: 100%;
     height: auto;
     background-size: 100% 100%;
     
 }
+
 #showcase .container{
-    text-align: center;
+	text-align: left;
+    margin-left: 1%;
+    /* text-align: center; */
 }
 
 #showcase h1{
@@ -145,9 +148,9 @@ ul#services{
 
 <section id="showcase">
         <div class="container">
-            <h1>The Specialists</h1>
+             <h1>Ask A Pro</h1>
             <br>
-            <p>The best way to get an answer is by asking a Specialist!</p>
+            <p>The best way to get an answer...<br> is by asking a Pro!</p>
         </div>
     </section>
 

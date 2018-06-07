@@ -86,6 +86,27 @@ public class UserServiceImp implements UserService {
 	public Integer getUserId(String username) {	
 		return userRepository.getUserId(username);
 	}
+	
+
+
+	@Override
+	@Transactional
+	public boolean checkUsernameAvailability(String username) {
+		// TODO Auto-generated method stub
+		return !userRepository.checkIfUsernameExists(username);
+	}
+
+
+
+
+
+	@Override
+	@Transactional
+	public boolean checkEmailAvailability(String email) {
+		
+		
+		return !userRepository.checkIfEmailExists(email);
+	}
 
 
 }

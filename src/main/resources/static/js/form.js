@@ -1,14 +1,17 @@
-function email_validate(email)
-{
+function email_validate(email){
 var regMail = /^([_a-zA-Z0-9-]+)(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+([a-zA-Z]{2,3})$/;
 
     if(regMail.test(email) == false)
     {
-    document.getElementById("status").innerHTML    = "<span class='warning'>Email  is not valid .</span>";
+    document.getElementById("status").innerHTML = "Email is not valid";
+    document.getElementById("status").style.color = "red";
+    document.getElementById("status").style.fontSize = "small";
     }
     else
     {
-    document.getElementById("status").innerHTML = "<span class='valid'>Valid Email</span>"; 
+    document.getElementById("status").innerHTML = "Valid email";	
+    document.getElementById("status").style.color = "green";
+    document.getElementById("status").style.fontSize = "small";
     }
 }
 
@@ -33,19 +36,6 @@ function checkPassword()
     }
 } 
 
-function validatephone(phone) 
-{
-    var maintainplus = '';
-    var numval = phone.value
-    if ( numval.charAt(0)=='+' )
-    {
-        var maintainplus = '';
-    }
-    curphonevar = numval.replace(/[\\A-Za-z!"£$%^&\,*+_={};:'@#~,.Š\/<>?|`¬\]\[]/g,'');
-    phone.value = maintainplus + curphonevar;
-    var maintainplus = '';
-    phone.focus;
-}
 
 function Validate(txt) {
     txt.value = txt.value.replace(/[^a-zA-Z-'\n\r.]+/g, '');

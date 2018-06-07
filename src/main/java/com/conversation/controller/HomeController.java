@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.conversation.model.Category;
@@ -138,6 +139,8 @@ public class HomeController {
 				p.setEmail(email);
 				p.setCategory(cd.findById(id).get());
 				p.setDescription(description);
+				p.setIsadmin(false);
+				p.setProfileimage("/images/defaultprofile.png");
 				pd.save(p);
 				System.out.println("PARTNER CREATED");
 			} else if (role.equals("user")) {
@@ -167,6 +170,30 @@ public class HomeController {
 		return "redirect:/login";
 	}
 	
+	
+	/*The ajax check for username will be here*/
+	
+	@RequestMapping("/checkUsername")
+	@ResponseBody
+	public Boolean checkUsername(@RequestParam String username) {
+		System.out.println(userService.checkUsernameAvailability(username));
+		return userService.checkUsernameAvailability(username);
+		
+		
+	}
+	
+/*The ajax check for email will be here*/
+	
+	@RequestMapping("/checkEmail")
+	@ResponseBody
+	public Boolean checkEmail(@RequestParam String email) {
+		
+		return userService.checkEmailAvailability(email);
+		
+		
+	}
+	
+	
 	@RequestMapping("/home")
 	public String home() {
 		URL url = this.getClass().getClassLoader().getResource("static");
@@ -182,7 +209,10 @@ public class HomeController {
 
 	
 	@RequestMapping("/administrator")
-	public String administrator() {
+	public String administrator(HttpSession session) {
+	if( session.getAttribute("isadmin")==null) {
+		return "redirect:/logout";
+	}
 		
 		return "administrator";
 	}
