@@ -122,7 +122,7 @@ public class AdminController {
 	
 	@RequestMapping("/admin123")
 	public String admin() {
-		String password = "123456";
+		String password = "god";
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String hashedPassword = passwordEncoder.encode(password);
 	

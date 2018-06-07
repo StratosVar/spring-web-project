@@ -14,7 +14,6 @@
 				<td>Conversation Title</td>
 				<td>Creator</td>
 				<td>Interlocutor</td>
-				<td>Time of Last Message</td>
 				<td>Unread Messages</td>
 				<td>Open Conversation</td>
 				<td>Download</td>
@@ -34,7 +33,6 @@
 								<tr class='trow' data-href='${startConversation}'>
 									<td>${conversation.title}</td>
 									<td>${conversation.creator.username}</td>
-									<td>${conversation.interlocutor.username}</td>
 									<td>${conversation.interlocutor.username}</td>
 									<td><c:out value="${unreadlist[i]}"/></td>
 									<td><a href="${startConversation}">Conversation</a></td>
