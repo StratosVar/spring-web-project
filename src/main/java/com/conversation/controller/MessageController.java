@@ -70,7 +70,7 @@ public class MessageController {
 		message.setText(text);
 		
 		//To txt file for printing !!
-//		FileAccess.fileWriterAccess(conversation, message);
+		FileAccess.fileWriterAccess(conversation, message);
 		
 		
 		conversation.getMessages().add(message);
